@@ -9,6 +9,7 @@
 </head>
 <body>
     <h1>Page d'inscription</h1>
+    <p>Mail: <input type="text" name="email" id="email"></p>
     <p>Identifient: <input type="text" name="id_user" id="login"></p>
     <p>Mot de passe: <input type="text" name="id_user" id="password"></p>
     <p>Confirmation mot de passe: <input type="text" name="id_user" id="password"></p>
