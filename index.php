@@ -10,8 +10,8 @@
 <body>
 
     <h1>Bienvenue sur la page d'aceuil</h1>
-    <a href="">connexion</a>
-    <a href="">inscription</a>
+    <a href="connexion.php">connexion</a>
+    <a href="inscription.php">inscription</a>
     
 </body>
 </html>
