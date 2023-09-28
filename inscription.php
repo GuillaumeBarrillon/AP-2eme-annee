@@ -13,7 +13,7 @@
     <p>Identifient: <input type="text" name="id_user" id="login"></p>
     <p>Mot de passe: <input type="text" name="id_user" id="password"></p>
     <p>Confirmation mot de passe: <input type="text" name="id_user" id="password"></p>
-    <a href="listcommande.php">Inscription</a>
+    <a href="listecommande.php">Inscription</a>
     <input type="reset" value="Annuler">
     <a href="index.php">Déconnexion</a>
 </body>
