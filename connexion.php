@@ -11,6 +11,7 @@
     <h1>Connexion</h1>
     <p>Identifient <input type="text" name="login" id="login"></p>
     <p>Mot de passe <input type="text" name="password" id="password"></p>
+    <a href="index.php">Déconnexion</a>
     
 </body>
 </html>
