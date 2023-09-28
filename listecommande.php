@@ -55,7 +55,7 @@
     </div>
 
 
-    <p><input type="button" value="Valider"> <a href="#">Annuler</a></p>
+    <a href="payer.php">Valider</a>
 
 
 
