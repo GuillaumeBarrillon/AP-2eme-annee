@@ -9,7 +9,7 @@
 </head>
 <body>
 
-    <h1>Bienvenue sur la page d'aceuil</h1>
+    <h1>Bienvenue sur la page d'accueil</h1>
     <a href="connexion.php">connexion</a>
     <a href="inscription.php">inscription</a>
     
