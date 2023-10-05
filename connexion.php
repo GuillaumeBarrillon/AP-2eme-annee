@@ -50,7 +50,7 @@ if ($submit) {
     <p><?= $message; ?></p>
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
         <p>Identifiant <input type="text" name="login" id="login"></p>
-        <p>Mot de passe <input type="text" name="password" id="password"></p>
+        <p>Mot de passe <input type="password" name="password" id="password"></p>
         <input type="submit" name="submit" value="Connexion">
         <input type="reset" value="Annuler">
     </form>
