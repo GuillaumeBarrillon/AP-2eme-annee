@@ -54,7 +54,7 @@ if ($submit) {
         <input type="submit" name="submit" value="Connexion">
         <input type="reset" value="Annuler">
     </form>
-    <a href="index.php">Déconnexion</a>
+    <a href="index.php">Déconnexion 123</a>
     
 </body>
 </html>
