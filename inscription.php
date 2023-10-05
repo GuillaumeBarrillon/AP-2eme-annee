@@ -44,7 +44,7 @@ if ($submit) {
         <p>Email<br><input type="mail" name="email" id="email"></p>
         <input type="submit" name="submit" value="Envoyer">
         <input type="reset" name="Réinitialiser" value="Réinitialiser">
-        <button href="index.php">Retour</button>
+        <button><a href="index.php">Retour</a></button>
     </form>
 </body>
 </html>

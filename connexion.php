@@ -61,9 +61,9 @@ if ($submit) {
         <p>Identifiant <input type="text" name="login" id="login"></p>
         <p>Mot de passe <input type="password" name="password" id="password"></p>
         <input type="submit" name="submit" value="Connexion">
-        <input type="reset" value="Annuler">
-        <button href="index.php">Retour</button>
+        <button><a href="index.php">Retour</a></button>
     </form>
+    <p>Vous n'avez pas de compte ? <a href="inscription.php">Inscrivez-vous</a></p>
     
 </body>
 </html>
