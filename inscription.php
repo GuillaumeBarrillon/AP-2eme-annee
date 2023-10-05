@@ -8,7 +8,7 @@ $login = isset($_POST['login']) ? $_POST['login'] : '';
 $password = isset($_POST['password']) ? $_POST['password'] : '';
 $email = isset($_POST['email']) ? $_POST['email'] : '';
 
-if ($submit) {
+if ($submit and !empty($login) and !empty($password) and !empty($email)) {
 
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 

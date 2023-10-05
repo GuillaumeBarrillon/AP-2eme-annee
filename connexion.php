@@ -11,8 +11,7 @@ $login = isset($_POST['login']) ? $_POST['login'] : '';
 $password = isset($_POST['password']) ? $_POST['password'] : '';
 $submit = isset($_POST['submit']) ?? false;
 
-if ($submit) {
-    
+if ($submit and !empty($login) and !empty($password)) {
     
     try {
         // Vérifier la connexion à la base de données
