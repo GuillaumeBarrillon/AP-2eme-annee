@@ -31,7 +31,7 @@ if ($submit) {
         header("Location: listecommande.php");
         exit();
     } else {
-        $message = "login et/ou password invalide";
+        $message = "login et/ou password invalide ";
     }
 }
 ?>
