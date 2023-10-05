@@ -7,3 +7,33 @@ body{
     text-align: center;
     font-family: sans-serif;
 }
+
+.connexion {
+    width: 100%;
+    margin-top: 2rem;
+    padding-right: 2rem;
+    box-sizing: border-box; /* Permet de fixer la taille de la box */
+    
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.connexion a i {
+    margin-right: 10px;
+}
+
+.connexion a {
+    border: 2px solid black;
+    border-radius: 0.8rem;
+    padding: .6rem;
+    text-decoration: none;
+    color: black;
+    display: block;
+
+    transition: 2s transform;
+}
+
+.connexion a:hover {
+    transform: scale(1.1);
+}
