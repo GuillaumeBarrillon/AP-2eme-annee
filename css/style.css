@@ -30,7 +30,7 @@ body{
     text-decoration: none;
     color: black;
     display: block;
-
+    
     transition: 2s transform;
 }
 
