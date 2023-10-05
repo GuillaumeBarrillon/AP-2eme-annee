@@ -9,30 +9,39 @@ $message = "";  // Message d'erreur
 // Récupère le contenu du formulaire
 $login = isset($_POST['login']) ? $_POST['login'] : '';
 $password = isset($_POST['password']) ? $_POST['password'] : '';
-$submit = isset($_POST['submit']);
+$submit = isset($_POST['submit']) ?? false;
 
 if ($submit) {
+    
     
     try {
         // Vérifier la connexion à la base de données
         if (!$dbh) {
             die("<p>Erreur de connexion à la base de données</p>");
         }
-        $sql = "select * from utilisateur where Login=:login and Mot_de_passe=:password";
+        $sql = "select * from utilisateur where Login=:login";
         $sth = $dbh->prepare($sql);
         $sth->bindParam(':login', $login);
-        $sth->bindParam(':password', $password);
         $sth->execute();
-        $rows = $sth->fetchAll(PDO::FETCH_ASSOC);
+        $rows = $sth->fetch(PDO::FETCH_ASSOC);
     } catch (PDOException $ex) {
         die("Erreur lors de la requête SQL : " . $ex->getMessage());
     }
-    if (count($rows) != 0) {
-        header("Location: listecommande.php");
-        exit();
+
+    if (count($rows) != 0) 
+    {
+        if (password_verify($password, $rows['Mot_de_passe']))
+        {
+            header("Location: listecommande.php");
+            exit();
+        
+        } else {
+            $message = "login et/ou password invalide ";
+        }
     } else {
         $message = "login et/ou password invalide ";
     }
+
 }
 ?>
 
@@ -53,8 +62,8 @@ if ($submit) {
         <p>Mot de passe <input type="password" name="password" id="password"></p>
         <input type="submit" name="submit" value="Connexion">
         <input type="reset" value="Annuler">
+        <button href="index.php">Retour</button>
     </form>
-    <a href="index.php">Déconnexion 123</a>
     
 </body>
 </html>

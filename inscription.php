@@ -9,11 +9,13 @@ $password = isset($_POST['password']) ? $_POST['password'] : '';
 $email = isset($_POST['email']) ? $_POST['email'] : '';
 
 if ($submit) {
+
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
     $sql = "INSERT INTO utilisateur (Login, Mot_de_passe, Email) VALUES (:login, :password, :email)";
     try {
         $sth = $dbh->prepare($sql);
-        $sth->execute(array(":login"=>$login,":password"=>$password,":email"=>$email));
-        $nb = $sth->rowcount();
+        $sth->execute(array(":login"=>$login,":password"=>$hashed_password,":email"=>$email));
     } catch (PDOException $e) {
         die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
     }
