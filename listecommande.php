@@ -1,61 +1,60 @@
+<?php
+
+
+
+
+include 'Include/db_functions.php';
+// Connexion à la base
+$dbh=db_connect();
+
+// Select table produit
+ {
+    $sql="Select * FROM produit;";
+    try {
+        $sth = $dbh->query($sql);
+        $sth->execute();
+        $rows = $sth->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $ex) {
+        die( "<p>Erreur lors de la requête SQL : " . $ex->getMessage() . "</p>");
+    }
+}
+?>
+
+
+
+
 <!doctype html>
 <html lang="fr">
 <head>
   <meta charset="utf-8">
-  <title>ListeCommande</title>
+  <title>Payer</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <h1>Liste de commande(menu)</h1>
-    <div>
-        <p>Pizza Bosca (17€)
-            <input type="number" name="quantité"></option></select>
-        </p>
-    </div>
-    <div>
-        <p>Pizza Full Formaggi (15€)
-            <input type="number" name="quantité"></option></select>
-        </p>
-    </div>
-    <div>
-        <p>Pizza Basta Cosi (14€)
-            <input type="number" name="quantité"></option></select>
-        </p>
-    </div>
-    <div>
-        <p>Katsu viande et aubergines (14,90€)
-            <input type="number" name="quantité"></option></select>
-        </p>
-    </div>
-    <div>
-        <p>Katsu poisson et aubergines (12,90€)
-            <input type="number" name="quantité"></option></select>
-        </p>
-    </div>
-    <div>
-        <p>Coxinhas boeuf (9,90€)
-            <input type="number" name="quantité"></option></select>
-        </p>
-    </div>
-    <div>
-        <p>Coxinhas vegan (7,90€)
-            <input type="number" name="quantité"></option></select>
-        </p>
-    </div>
-    <div>
-        <p>Coxinhas vegan (7,90€)
-            <input type="number" name="quantité"></option></select>
-        </p>
-    </div>
+    <table>
+        <th>Nom du plat</th>
+        <th>Prix</th>
+        <th>Quantité</th>
+
+
+<?php
+if (count($rows)>0) {
+    foreach ($rows as $row)
+        { 
+            echo "<tr>";
+            echo "<td>". $row["Libelle"]."</td>";
+            echo "<td><p>". $row["Prix"]."€</p></td>";
+            echo "<td> <input type='number'></td>"; 
+       }
+}
+?>
+    </table>
 
 
     <div>
-        <input type="number" name="quantité"></option></select>
+         <a href="payer.php"><input type="button" value="Commander"></a></p>
     </div>
-
-
-    <a href="payer.php">Valider</a>
 
 
 
