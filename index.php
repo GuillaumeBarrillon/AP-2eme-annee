@@ -1,7 +1,3 @@
-<?php 
-
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -17,5 +13,6 @@
     
     <a href="connexion.php">connexion</a>
     <a href="inscription.php">inscription</a>
+    
 </body>
 </html>
