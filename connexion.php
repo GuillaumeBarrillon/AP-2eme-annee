@@ -11,7 +11,7 @@
     <h1>Connexion</h1>
     <p>Identifient <input type="text" name="login" id="login"></p>
     <p>Mot de passe <input type="text" name="password" id="password"></p>
-    <input type="submit" value="Connexion">
+    <a href="listecommande.php">Connexion</a>
     <input type="reset" value="Annuler">
     <a href="index.php">Déconnexion</a>
     
