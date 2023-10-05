@@ -1,3 +1,30 @@
+<?php
+include 'include/db_functions.php';
+// Connexion à la base
+$dbh = db_connect();
+// Liste des personnes
+$submit = isset($_POST['submit']);
+$login = isset($_POST['login']) ? $_POST['login'] : '';
+$password = isset($_POST['password']) ? $_POST['password'] : '';
+$email = isset($_POST['email']) ? $_POST['email'] : '';
+
+if ($submit) {
+    $sql = "INSERT INTO utilisateur (Login, Mot_de_passe, Email) VALUES (:login, :password, :email)";
+    try {
+        $sth = $dbh->prepare($sql);
+        $sth->execute(array(":login"=>$login,":password"=>$password,":email"=>$email));
+        $nb = $sth->rowcount();
+    } catch (PDOException $e) {
+        die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
+    }
+    $message="Personne(s) créée(s)";
+    header("location: listecommande.php");
+}   else {
+        $message="Veuillez saisir une personne SVP";
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -9,12 +36,13 @@
 </head>
 <body>
     <h1>Page d'inscription</h1>
-    <p>Mail: <input type="text" name="email" id="email"></p>
-    <p>Identifient: <input type="text" name="id_user" id="login"></p>
-    <p>Mot de passe: <input type="text" name="id_user" id="password"></p>
-    <p>Confirmation mot de passe: <input type="text" name="id_user" id="password"></p>
-    <a href="listecommande.php">Inscription</a>
-    <input type="reset" value="Annuler">
-    <a href="index.php">Déconnexion</a>
+    <form action="<?php echo $_SERVER['PHP_SELF']; ?>"method="post">
+        <p>Login<br><input type="text" name="login" id="login"></p>
+        <p>Mot de passe<br><input type="password" name="password" id="password"></p>
+        <p>Email<br><input type="mail" name="email" id="email"></p>
+        <input type="submit" name="submit" value="Envoyer">
+        <input type="reset" name="Réinitialiser" value="Réinitialiser">
+        <button href="index.php">Retour</button>
+    </form>
 </body>
 </html>
