@@ -99,7 +99,7 @@ INSERT INTO `produit` (`ID_Produit`, `Libelle`, `Prix`) VALUES
 CREATE TABLE `utilisateur` (
   `ID_utilisateur` int(11) NOT NULL,
   `Login` varchar(50) NOT NULL,
-  `Mot_de_passe` varchar(50) NOT NULL,
+  `Mot_de_passe` varchar(250) NOT NULL,
   `Email` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
