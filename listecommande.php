@@ -1,11 +1,43 @@
 <?php
-
-
-
-
 include 'Include/db_functions.php';
+
 // Connexion à la base
 $dbh=db_connect();
+
+$submit = isset($_POST['submit']);
+
+if ($submit) {
+
+        $quantites = [];
+        foreach ($_POST as $key => $value) {
+            $exploded = explode("_", $key);
+            if ($exploded[0] == "qte") {
+                var_dump($exploded);
+                if ((int)($value) > 0) {
+                    $quantites[$exploded[1]] = (int)$value;
+                }
+            }
+        }
+
+    if (count($quantites) > 0) {
+
+    }
+
+    $type = $_POST['typeCommande'];
+
+    // Récupère le contenu des checkbox
+    if ($type == "place"){
+        $_SESSION['typeCommande'] = "sur place";
+        //header("Location: payer.php");
+        //exit();
+    }
+
+    if ($type == "emporter") {
+        $_SESSION['typeCommande'] = "à emporter";
+        //header("Location: payer.php");
+        //exit();
+    }
+}
 
 // Select table produit
  {
@@ -32,6 +64,7 @@ $dbh=db_connect();
 </head>
 
 <body>
+<form method="POST">
     <table>
         <th>Nom du plat</th>
         <th>Prix</th>
@@ -45,16 +78,28 @@ if (count($rows)>0) {
             echo "<tr>";
             echo "<td>". $row["Libelle"]."</td>";
             echo "<td><p>". $row["Prix"]."€</p></td>";
-            echo "<td> <input type='number'></td>"; 
+            echo "<td> <input type='number' name='qte_{$row['ID_Produit']}' id='number'> </td>";
+            echo "</tr>";
        }
 }
+
 ?>
     </table>
 
 
-    <div>
-         <a href="payer.php"><input type="button" value="Commander"></a></p>
-    </div>
+
+ 
+  <h3>Veuillez choisir:</h3>
+
+        <input type="radio" id="surPlace" name="typeCommande" value="place" checked/> Sur place <br>
+        <input type="radio" id="aEmporter" name="typeCommande" value="emporter" /> A emporter<br>
+        <input type="submit" name="submit" value="Payer">
+    </form>
+
+
+
+
+
 
 
 
