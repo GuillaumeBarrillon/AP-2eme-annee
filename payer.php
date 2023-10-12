@@ -4,6 +4,8 @@ include "Include/db_functions.php";
 // Connexion à la base
 $dbh = db_connect();
 
+$typeCommande = $_SESSION['typeCommande'];
+
 try {
   // Vérifier la connexion à la base de données
   if (!$dbh) {
@@ -35,6 +37,7 @@ try {
 
 <body>
   <h1>Payer</h1>
+  <?= "Vous avez commandé {$typeCommande} "; ?><br>
   <?= "Commande n° {$numCommande} pour un montant de {$prixCommande}"; ?>
   <p>Numéro de carte bancaire<br><input type="text" name="" id=""></p>
   <p>Date d'expiration</p>
