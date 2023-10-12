@@ -1,13 +1,41 @@
+<?php
+include "Include/db_functions.php";
+
+// Connexion à la base
+$dbh = db_connect();
+
+try {
+  // Vérifier la connexion à la base de données
+  if (!$dbh) {
+    die("<p>Erreur de connexion à la base de données</p>");
+  }
+  $id = $_SESSION['user_id'];
+  $sql = "select ID_Commande, Total_TTC from commande where id_utilisateur = :id_utilisateur";
+  $sth = $dbh->prepare($sql);
+  $sth->bindParam(':id_utilisateur', $id);
+  $sth->execute();
+  $rows = $sth->fetch(PDO::FETCH_ASSOC);
+  $numCommande = $rows['ID_Commande'];
+  $prixCommande = $rows['Total_TTC'];
+} catch (PDOException $ex) {
+  die("Erreur lors de la requête SQL : " . $ex->getMessage());
+}
+
+?>
+
 <!doctype html>
 <html lang="fr">
+
 <head>
   <meta charset="utf-8">
   <title>Payer</title>
   <link rel="stylesheet" href="style.css">
 
 </head>
+
 <body>
   <h1>Payer</h1>
+  <?= "Commande n° {$numCommande} pour un montant de {$prixCommande}"; ?>
   <p>Numéro de carte bancaire<br><input type="text" name="" id=""></p>
   <p>Date d'expiration</p>
   <select name="mois">
@@ -24,8 +52,8 @@
     <option value="Octobre">Octobre</option>
     <option value="Novembre">Novembre</option>
     <option value="Décembre">Décembre</option>
-</select>
-<select name="année">
+  </select>
+  <select name="année">
     <option value="2023">année</option>
     <option value="2023">2023</option>
     <option value="2024">2024</option>
@@ -40,10 +68,11 @@
     <option value="2033">2033</option>
     <option value="2034">2034</option>
     <option value="2034">2034</option>
-</select>
+  </select>
 
-<p>CVC<br><input type="text" name="" id=""></p>
-<p><input type="button" value="Valider"></p>
-<a href="listecommande.php">Retour</a>
+  <p>CVC<br><input type="text" name="" id=""></p>
+  <input type="button" value="Valider">
+  <a href="listecommande.php">Retour</a>
 </body>
+
 </html>
