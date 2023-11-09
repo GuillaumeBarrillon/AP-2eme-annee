@@ -6,9 +6,9 @@ html a {
     text-decoration: none;
 }
 
-body{
-    text-align: center;
-    font-family: sans-serif;
+
+li{
+    color: red;
 }
 
 .connexion {
