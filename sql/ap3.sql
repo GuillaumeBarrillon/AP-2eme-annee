@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  jeu. 09 nov. 2023 à 15:03
+-- Généré le :  jeu. 09 nov. 2023 à 15:46
 -- Version du serveur :  10.4.6-MariaDB
 -- Version de PHP :  7.2.22
 
@@ -29,108 +29,86 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `commande` (
-  `ID_Commande` int(11) NOT NULL,
-  `Date_heure` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `Total_TTC` decimal(10,0) NOT NULL,
-  `Type_de_commande` varchar(50) NOT NULL,
-  `TVA` decimal(10,0) NOT NULL,
-  `Etat` int(11) NOT NULL,
-  `ID_Etat` int(11) NOT NULL,
-  `ID_utilisateur` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id_commande` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `id_etat` int(11) NOT NULL,
+  `date` datetime NOT NULL DEFAULT current_timestamp(),
+  `total_commande` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `type_conso` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `etat`
+-- Structure de la table `ligne`
 --
 
-CREATE TABLE `etat` (
-  `ID_Etat` int(11) NOT NULL,
-  `Libelle` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `ligne_de_commande`
---
-
-CREATE TABLE `ligne_de_commande` (
-  `ID_LigneCommande` int(11) NOT NULL,
-  `Quantite` int(11) NOT NULL,
-  `Total_HT` decimal(10,0) NOT NULL,
-  `ID_Produit` int(11) NOT NULL,
-  `ID_Commande` int(11) NOT NULL,
-  `ID_Produit_Reference` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE `ligne` (
+  `id_ligne` int(11) NOT NULL,
+  `id_commande` int(11) NOT NULL,
+  `id_produit` int(11) NOT NULL,
+  `qte` int(11) NOT NULL DEFAULT 0,
+  `total_ligne_ht` decimal(10,2) NOT NULL DEFAULT 0.00
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Déclencheurs `ligne_de_commande`
+-- Déclencheurs `ligne`
 --
 DELIMITER $$
-CREATE TRIGGER `after_ligne_insert` AFTER INSERT ON `ligne_de_commande` FOR EACH ROW BEGIN
- 
-    DECLARE total_commande INT;
-    DECLARE type_conso INT;
-    DECLARE tva INT;
-
-    SELECT Type_de_commande INTO type_conso FROM commande where commande.ID_Commande = NEW.ID_Commande;
-
-    IF type_conso=1 THEN
-		SET tva=1.055;
-	END IF;
-	
-    IF type_conso=2
-		THEN SET tva=1.1;
-	END IF;
-
-    SELECT sum(Total_HT) INTO @total_commande FROM ligne_de_commande WHERE ligne_de_commande.ID_Commande = NEW.ID_Commande;
-    SET total_commande=total_commande*tva;
-    UPDATE commande SET total_commande=total_commande where commande.ID_Commande = NEW.ID_Commande;
+CREATE TRIGGER `after_ligne_insert` AFTER INSERT ON `ligne` FOR EACH ROW BEGIN
+    set @total_commande = 0;
+    set @type_conso = 0;
+    set @tva = 0;
+    -- Lit la commande
+    SELECT type_conso INTO @type_conso FROM commande where commande.id_commande = NEW.id_commande;
+    -- Détermine le taux de TVA
+    IF @type_conso=1 THEN SET @tva=1.055; END IF;
+    IF @type_conso=2 THEN SET @tva=1.1; END IF;
+    -- Calcule le total HT des lignes de la commande
+    SELECT sum(total_ligne_ht) INTO @total_commande FROM ligne WHERE ligne.id_commande = NEW.id_commande;
+    -- Calcule le total TTC
+    SET @total_commande=@total_commande*@tva;
+    --  Met à jour le total commande 
+    UPDATE commande SET total_commande=@total_commande where commande.id_commande = NEW.id_commande;
   END
 $$
 DELIMITER ;
 DELIMITER $$
-CREATE TRIGGER `after_ligne_update` AFTER UPDATE ON `ligne_de_commande` FOR EACH ROW BEGIN
- 
-    DECLARE total_commande INT;
-    DECLARE type_conso INT;
-    DECLARE tva INT;
-
-    SELECT Type_de_commande INTO type_conso FROM commande where commande.ID_Commande = NEW.ID_Commande;
-
-    IF type_conso=1 THEN
-		SET tva=1.055;
-	END IF;
-	
-    IF type_conso=2
-		THEN SET tva=1.1;
-	END IF;
-
-    SELECT sum(Total_HT) INTO @total_commande FROM ligne_de_commande WHERE ligne_de_commande.ID_Commande = NEW.ID_Commande;
-    SET total_commande=total_commande*tva;
-    UPDATE commande SET total_commande=total_commande where commande.ID_Commande = NEW.ID_Commande;
+CREATE TRIGGER `after_ligne_update` AFTER UPDATE ON `ligne` FOR EACH ROW BEGIN
+    set @total_commande = 0;
+    set @type_conso = 0;
+    set @tva = 0;
+    -- Lit la commande
+    SELECT type_conso INTO @type_conso FROM commande where commande.id_commande = NEW.id_commande;
+    -- Détermine le taux de TVA
+    IF @type_conso=1 THEN SET @tva=1.055; END IF;
+    IF @type_conso=2 THEN SET @tva=1.1; END IF;
+    -- Calcule le total HT des lignes de la commande
+    SELECT sum(total_ligne_ht) INTO @total_commande FROM ligne WHERE ligne.id_commande = NEW.id_commande;
+    -- Calcule le total TTC
+    SET @total_commande=@total_commande*@tva;
+    --  Met à jour le total commande 
+    UPDATE commande SET total_commande=@total_commande where commande.id_commande = NEW.id_commande;
   END
 $$
 DELIMITER ;
 DELIMITER $$
-CREATE TRIGGER `before_ligne_insert` BEFORE INSERT ON `ligne_de_commande` FOR EACH ROW BEGIN
- 
-    DECLARE prix_ht INT;
-	
-    SELECT Prix INTO prix_ht FROM produit WHERE produit.ID_Produit = NEW.ID_Produit;
-    SET NEW.Total_HT = prix_ht * NEW.Quantite;
+CREATE TRIGGER `before_ligne_insert` BEFORE INSERT ON `ligne` FOR EACH ROW BEGIN
+    set @prix_ht = 0;
+    -- Lit le prix du produit
+    SELECT prix_ht INTO @prix_ht FROM produit WHERE produit.id_produit = NEW.id_produit; 
+    --  Calcule le total ligne 
+    SET NEW.total_ligne_ht = @prix_ht * NEW.qte;
   END
 $$
 DELIMITER ;
 DELIMITER $$
-CREATE TRIGGER `before_ligne_update` BEFORE UPDATE ON `ligne_de_commande` FOR EACH ROW BEGIN
- 
-    DECLARE prix_ht INT;
-	
-    SELECT Prix INTO prix_ht FROM produit WHERE produit.ID_Produit = NEW.ID_Produit;
-    SET NEW.Total_HT = prix_ht * NEW.Quantite;
+CREATE TRIGGER `before_ligne_update` BEFORE UPDATE ON `ligne` FOR EACH ROW BEGIN
+    set @prix_ht = 0;
+    -- Lit le prix du produit
+    SELECT prix_ht INTO @prix_ht FROM produit WHERE produit.id_produit = NEW.id_produit; 
+    --  Calcule le total ligne 
+    SET NEW.total_ligne_ht = @prix_ht * NEW.qte;
   END
 $$
 DELIMITER ;
@@ -142,43 +120,40 @@ DELIMITER ;
 --
 
 CREATE TABLE `produit` (
-  `ID_Produit` int(11) NOT NULL,
-  `Libelle` varchar(50) NOT NULL,
-  `Prix` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id_produit` int(11) NOT NULL,
+  `libelle` varchar(255) NOT NULL,
+  `prix_ht` decimal(10,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `produit`
 --
 
-INSERT INTO `produit` (`ID_Produit`, `Libelle`, `Prix`) VALUES
-(1, 'Pizza Bosca                                       ', 17),
-(2, 'Pizza Full Formaggi', 15),
-(3, 'Pizza Basta Cosi', 14),
-(4, 'Katsu viande et aubergines', 17),
-(5, 'Katsu poisson et aubergines', 13),
-(6, 'Coxinhas boeuf', 8),
-(7, 'Coxinhas vegan', 8),
-(8, 'Coxinhas fromage', 8);
+INSERT INTO `produit` (`id_produit`, `libelle`, `prix_ht`) VALUES
+(1, 'pâtes', '2.00'),
+(2, 'pizza', '5.00'),
+(3, 'salade cesard', '3.00'),
+(4, 'poisson', '4.00'),
+(5, 'riz', '2.00');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `utilisateur`
+-- Structure de la table `user`
 --
 
-CREATE TABLE `utilisateur` (
-  `ID_utilisateur` int(11) NOT NULL,
-  `Login` varchar(50) NOT NULL,
-  `Mot_de_passe` varchar(250) NOT NULL,
-  `Email` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE `user` (
+  `id_user` int(11) NOT NULL,
+  `login` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `utilisateur`
+-- Déchargement des données de la table `user`
 --
 
-INSERT INTO `utilisateur` (`ID_utilisateur`, `Login`, `Mot_de_passe`, `Email`) VALUES
+INSERT INTO `user` (`id_user`, `login`, `password`, `email`) VALUES
 (1, 'bob', 'bob', 'bob.bob@bob.fr');
 
 --
@@ -189,37 +164,29 @@ INSERT INTO `utilisateur` (`ID_utilisateur`, `Login`, `Mot_de_passe`, `Email`) V
 -- Index pour la table `commande`
 --
 ALTER TABLE `commande`
-  ADD PRIMARY KEY (`ID_Commande`),
-  ADD UNIQUE KEY `Commande_AK` (`Etat`),
-  ADD KEY `Commande_Etat_FK` (`ID_Etat`),
-  ADD KEY `Commande_Utilisateur0_FK` (`ID_utilisateur`);
+  ADD PRIMARY KEY (`id_commande`),
+  ADD KEY `id_user` (`id_user`),
+  ADD KEY `id_etat` (`id_etat`);
 
 --
--- Index pour la table `etat`
+-- Index pour la table `ligne`
 --
-ALTER TABLE `etat`
-  ADD PRIMARY KEY (`ID_Etat`);
-
---
--- Index pour la table `ligne_de_commande`
---
-ALTER TABLE `ligne_de_commande`
-  ADD PRIMARY KEY (`ID_LigneCommande`),
-  ADD UNIQUE KEY `Ligne_de_commande_AK` (`ID_Produit`),
-  ADD KEY `Ligne_de_commande_Commande_FK` (`ID_Commande`),
-  ADD KEY `Ligne_de_commande_Produit0_FK` (`ID_Produit_Reference`);
+ALTER TABLE `ligne`
+  ADD PRIMARY KEY (`id_ligne`),
+  ADD KEY `id_commande` (`id_commande`),
+  ADD KEY `id_produit` (`id_produit`);
 
 --
 -- Index pour la table `produit`
 --
 ALTER TABLE `produit`
-  ADD PRIMARY KEY (`ID_Produit`);
+  ADD PRIMARY KEY (`id_produit`);
 
 --
--- Index pour la table `utilisateur`
+-- Index pour la table `user`
 --
-ALTER TABLE `utilisateur`
-  ADD PRIMARY KEY (`ID_utilisateur`);
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id_user`);
 
 --
 -- AUTO_INCREMENT pour les tables déchargées
@@ -229,31 +196,25 @@ ALTER TABLE `utilisateur`
 -- AUTO_INCREMENT pour la table `commande`
 --
 ALTER TABLE `commande`
-  MODIFY `ID_Commande` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_commande` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT pour la table `etat`
+-- AUTO_INCREMENT pour la table `ligne`
 --
-ALTER TABLE `etat`
-  MODIFY `ID_Etat` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `ligne_de_commande`
---
-ALTER TABLE `ligne_de_commande`
-  MODIFY `ID_LigneCommande` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `ligne`
+  MODIFY `id_ligne` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `produit`
 --
 ALTER TABLE `produit`
-  MODIFY `ID_Produit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_produit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT pour la table `utilisateur`
+-- AUTO_INCREMENT pour la table `user`
 --
-ALTER TABLE `utilisateur`
-  MODIFY `ID_utilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `user`
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Contraintes pour les tables déchargées
@@ -263,15 +224,14 @@ ALTER TABLE `utilisateur`
 -- Contraintes pour la table `commande`
 --
 ALTER TABLE `commande`
-  ADD CONSTRAINT `Commande_Etat_FK` FOREIGN KEY (`ID_Etat`) REFERENCES `etat` (`ID_Etat`),
-  ADD CONSTRAINT `Commande_Utilisateur0_FK` FOREIGN KEY (`ID_utilisateur`) REFERENCES `utilisateur` (`ID_utilisateur`);
+  ADD CONSTRAINT `commande_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
 
 --
--- Contraintes pour la table `ligne_de_commande`
+-- Contraintes pour la table `ligne`
 --
-ALTER TABLE `ligne_de_commande`
-  ADD CONSTRAINT `Ligne_de_commande_Commande_FK` FOREIGN KEY (`ID_Commande`) REFERENCES `commande` (`ID_Commande`),
-  ADD CONSTRAINT `Ligne_de_commande_Produit0_FK` FOREIGN KEY (`ID_Produit_Reference`) REFERENCES `produit` (`ID_Produit`);
+ALTER TABLE `ligne`
+  ADD CONSTRAINT `ligne_ibfk_1` FOREIGN KEY (`id_commande`) REFERENCES `commande` (`id_commande`),
+  ADD CONSTRAINT `ligne_ibfk_2` FOREIGN KEY (`id_produit`) REFERENCES `produit` (`id_produit`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
