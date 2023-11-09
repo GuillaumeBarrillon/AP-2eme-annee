@@ -39,7 +39,7 @@ if ($submit) {
   if(empty($cvc)){
     $message[] = "Ajouter le numéro CVC";
   }if (count($message) == 0) {
-    header("Location: listecommande.php");
+    header("Location: info.php");
   }
 }
 
