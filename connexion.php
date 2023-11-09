@@ -18,7 +18,7 @@ if ($submit and !empty($login) and !empty($password)) {
         if (!$dbh) {
             die("<p>Erreur de connexion à la base de données</p>");
         }
-        $sql = "select * from user where Login=:login";
+        $sql = "select * from user where login=:login";
         $sth = $dbh->prepare($sql);
         $sth->bindParam(':login', $login);
         $sth->execute();
@@ -29,7 +29,7 @@ if ($submit and !empty($login) and !empty($password)) {
 
     if (count($rows) != 0) 
     {
-        if (password_verify($password, $rows['Mot_de_passe']))
+        if (password_verify($password, $rows['password']))
         {
             $_SESSION['user_id'] = $rows['id_utilisateur'];
             header("Location: listecommande.php");
