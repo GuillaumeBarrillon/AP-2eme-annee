@@ -18,7 +18,7 @@ if ($submit and !empty($login) and !empty($password)) {
         if (!$dbh) {
             die("<p>Erreur de connexion à la base de données</p>");
         }
-        $sql = "select * from utilisateur where Login=:login";
+        $sql = "select * from user where Login=:login";
         $sth = $dbh->prepare($sql);
         $sth->bindParam(':login', $login);
         $sth->execute();

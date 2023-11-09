@@ -9,7 +9,7 @@ $password = isset($_POST['password']) ? $_POST['password'] : '';
 $email = isset($_POST['email']) ? $_POST['email'] : '';
 if ($submit and !empty($login) and !empty($password) and !empty($email)) {
     // Vérifier si l'utilisateur existe déjà
-    $checkUserQuery = "SELECT * FROM utilisateur WHERE Login = :login OR Email = :email";
+    $checkUserQuery = "SELECT * FROM user WHERE Login = :login OR Email = :email";
     $checkUserStmt = $dbh->prepare($checkUserQuery);
     $checkUserStmt->execute(array(":login" => $login, ":email" => $email));
     $existingUser = $checkUserStmt->fetch(PDO::FETCH_ASSOC);
@@ -20,7 +20,7 @@ if ($submit and !empty($login) and !empty($password) and !empty($email)) {
 
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-        $sql = "INSERT INTO utilisateur (Login, Mot_de_passe, Email) VALUES (:login, :password, :email)";
+        $sql = "INSERT INTO user (Login, password, Email) VALUES (:login, :password, :email)";
         try {
             $sth = $dbh->prepare($sql);
             $sth->execute(array(":login" => $login, ":password" => $hashed_password, ":email" => $email));

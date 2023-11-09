@@ -12,13 +12,13 @@ try {
       die("<p>Erreur de connexion à la base de données</p>");
     }
     $id = $_SESSION['user_id'];
-    $sql = "select ID_Commande, Total_TTC from commande where id_utilisateur = :id_utilisateur";
+    $sql = "SELECT id_commande, total_commande FROM commande WHERE id_user = :id_user";
     $sth = $dbh->prepare($sql);
-    $sth->bindParam(':id_utilisateur', $id);
+    $sth->bindParam(':id_user', $id);
     $sth->execute();
     $rows = $sth->fetch(PDO::FETCH_ASSOC);
-    $numCommande = $rows['ID_Commande'];
-    $prixCommande = $rows['Total_TTC'];
+    $numCommande = $rows['id_commande'];
+    $prixCommande = $rows['total_commande'];
   } catch (PDOException $ex) {
     die("Erreur lors de la requête SQL : " . $ex->getMessage());
   }

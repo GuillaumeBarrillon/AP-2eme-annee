@@ -12,7 +12,6 @@ if ($submit) {
         foreach ($_POST as $key => $value) {
             $exploded = explode("_", $key);
             if ($exploded[0] == "qte") {
-                var_dump($exploded);
                 if ((int)($value) > 0) {
                     $quantites[$exploded[1]] = (int)$value;
                 }
@@ -21,6 +20,29 @@ if ($submit) {
 
     if (count($quantites) > 0) {
 
+        // Inserer une nouvelle commande
+        $sql = "INSERT INTO commande(id_user, id_etat, date, total_commande, type_conso) VALUES (:id_user, :id_etat, SYSDATE(), :total_commande, :type_conso)";
+        $stmt = $dbh->prepare($sql);
+        $stmt->execute([
+            ":id_user" => 0,
+            ":id_etat" => 0,
+            ":total_commande" => 0,
+            ":type_conso" => $_SESSION['typeCommande'],
+        ]);
+
+        $idCommandeInseree = $dbh->lastInsertId();
+
+        foreach($quantites as $identifiantPlat => $quantite){
+          // Etape 1. Insert dans ligne commande
+          $sql = "INSERT INTO ligne(id_commande, id_produit, qte, total_ligne_ht) VALUES(:id_commande, :idproduit, :qte, :total_ligne_ht)";
+          $stmt = $dbh->prepare($sql);
+          $stmt->execute([
+            ":id_commande" => $idCommandeInseree,
+            ":idproduit" => $identifiantPlat,
+            ":qte" => ,
+            ":total_ligne_ht" => ,
+          ]);
+        }
     }
 
     $type = $_POST['typeCommande'];
@@ -59,7 +81,7 @@ if ($submit) {
 <html lang="fr">
 <head>
   <meta charset="utf-8">
-  <title>Payer</title>
+  <title>Liste Commande</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
