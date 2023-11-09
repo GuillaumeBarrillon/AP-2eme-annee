@@ -22,11 +22,11 @@ if ($submit) {
 
     // Récupère le contenu des checkbox
     if ($type == "place") {
-        $_SESSION['typeCommande'] = "sur place";
+        $_SESSION['typeCommande'] = 2;
     }
 
     if ($type == "emporter") {
-        $_SESSION['typeCommande'] = "à emporter";
+        $_SESSION['typeCommande'] = 1;
     }
 
     if (count($quantites) > 0) {
@@ -54,6 +54,7 @@ if ($submit) {
             ]);
         }
     }
+    header("Location: payer.php");
 }
 
 // Select table produit
@@ -93,9 +94,9 @@ if ($submit) {
             if (count($rows) > 0) {
                 foreach ($rows as $row) {
                     echo "<tr>";
-                    echo "<td>" . $row["Libelle"] . "</td>";
-                    echo "<td><p>" . $row["Prix"] . "€</p></td>";
-                    echo "<td> <input type='number' name='qte_{$row['ID_Produit']}' id='number'> </td>";
+                    echo "<td>" . $row["libelle"] . "</td>";
+                    echo "<td><p>" . $row["prix_ht"] . "€</p></td>";
+                    echo "<td> <input type='number' name='qte_{$row['id_produit']}' id='number'> </td>";
                     echo "</tr>";
                 }
             }
