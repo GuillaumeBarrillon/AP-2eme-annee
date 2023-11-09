@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : jeu. 12 oct. 2023 à 13:54
--- Version du serveur : 10.4.28-MariaDB
--- Version de PHP : 8.1.17
+-- Généré le :  jeu. 09 nov. 2023 à 15:03
+-- Version du serveur :  10.4.6-MariaDB
+-- Version de PHP :  7.2.22
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -18,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `ap3`
+-- Base de données :  `ap3`
 --
 
 -- --------------------------------------------------------
@@ -36,7 +37,7 @@ CREATE TABLE `commande` (
   `Etat` int(11) NOT NULL,
   `ID_Etat` int(11) NOT NULL,
   `ID_utilisateur` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -47,7 +48,7 @@ CREATE TABLE `commande` (
 CREATE TABLE `etat` (
   `ID_Etat` int(11) NOT NULL,
   `Libelle` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -62,7 +63,77 @@ CREATE TABLE `ligne_de_commande` (
   `ID_Produit` int(11) NOT NULL,
   `ID_Commande` int(11) NOT NULL,
   `ID_Produit_Reference` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déclencheurs `ligne_de_commande`
+--
+DELIMITER $$
+CREATE TRIGGER `after_ligne_insert` AFTER INSERT ON `ligne_de_commande` FOR EACH ROW BEGIN
+ 
+    DECLARE total_commande INT;
+    DECLARE type_conso INT;
+    DECLARE tva INT;
+
+    SELECT Type_de_commande INTO type_conso FROM commande where commande.ID_Commande = NEW.ID_Commande;
+
+    IF type_conso=1 THEN
+		SET tva=1.055;
+	END IF;
+	
+    IF type_conso=2
+		THEN SET tva=1.1;
+	END IF;
+
+    SELECT sum(Total_HT) INTO @total_commande FROM ligne_de_commande WHERE ligne_de_commande.ID_Commande = NEW.ID_Commande;
+    SET total_commande=total_commande*tva;
+    UPDATE commande SET total_commande=total_commande where commande.ID_Commande = NEW.ID_Commande;
+  END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `after_ligne_update` AFTER UPDATE ON `ligne_de_commande` FOR EACH ROW BEGIN
+ 
+    DECLARE total_commande INT;
+    DECLARE type_conso INT;
+    DECLARE tva INT;
+
+    SELECT Type_de_commande INTO type_conso FROM commande where commande.ID_Commande = NEW.ID_Commande;
+
+    IF type_conso=1 THEN
+		SET tva=1.055;
+	END IF;
+	
+    IF type_conso=2
+		THEN SET tva=1.1;
+	END IF;
+
+    SELECT sum(Total_HT) INTO @total_commande FROM ligne_de_commande WHERE ligne_de_commande.ID_Commande = NEW.ID_Commande;
+    SET total_commande=total_commande*tva;
+    UPDATE commande SET total_commande=total_commande where commande.ID_Commande = NEW.ID_Commande;
+  END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `before_ligne_insert` BEFORE INSERT ON `ligne_de_commande` FOR EACH ROW BEGIN
+ 
+    DECLARE prix_ht INT;
+	
+    SELECT Prix INTO prix_ht FROM produit WHERE produit.ID_Produit = NEW.ID_Produit;
+    SET NEW.Total_HT = prix_ht * NEW.Quantite;
+  END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `before_ligne_update` BEFORE UPDATE ON `ligne_de_commande` FOR EACH ROW BEGIN
+ 
+    DECLARE prix_ht INT;
+	
+    SELECT Prix INTO prix_ht FROM produit WHERE produit.ID_Produit = NEW.ID_Produit;
+    SET NEW.Total_HT = prix_ht * NEW.Quantite;
+  END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -74,7 +145,7 @@ CREATE TABLE `produit` (
   `ID_Produit` int(11) NOT NULL,
   `Libelle` varchar(50) NOT NULL,
   `Prix` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `produit`
@@ -101,7 +172,14 @@ CREATE TABLE `utilisateur` (
   `Login` varchar(50) NOT NULL,
   `Mot_de_passe` varchar(250) NOT NULL,
   `Email` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `utilisateur`
+--
+
+INSERT INTO `utilisateur` (`ID_utilisateur`, `Login`, `Mot_de_passe`, `Email`) VALUES
+(1, 'bob', 'bob', 'bob.bob@bob.fr');
 
 --
 -- Index pour les tables déchargées
@@ -175,7 +253,7 @@ ALTER TABLE `produit`
 -- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  MODIFY `ID_utilisateur` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_utilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Contraintes pour les tables déchargées
