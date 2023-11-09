@@ -33,12 +33,23 @@ if ($submit) {
   if(empty($nb_cb)){
     $message[] = "Ajouter le numéro de la carte bancaire";
   }
+
+  if (!mb_strlen($nb_cb) == 16){
+    $message[] = "Le numéro de la carte bancaire est de 16 caracthère";
+  }
+
   if(empty($dt_expiration)){
     $message[] = "La date d'expiration est obligatoir";
   }
   if(empty($cvc)){
     $message[] = "Ajouter le numéro CVC";
-  }if (count($message) == 0) {
+  }
+  
+  if (!mb_strlen($nb_cb) == 3){
+    $message[] = "Le numéro du CVC est de 3";
+  }
+
+  if (count($message) == 0) {
     header("Location: info.php");
   }
 }
