@@ -75,7 +75,7 @@ if ($submit) {
     <p>Date d'expiration <br> <input type="date" name="dt_expiration" id="dt_expiration"></p>
     <p>CVC <br> <input type="text" name="cvc" id="cvc"></p>
     <input type="submit" value="Payer" name="submit">
-    <a href="listecommande.php">Retour</a>
+    <button><a href="listecommande.php">Retour</a></button>
   </form>
 
   

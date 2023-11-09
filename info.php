@@ -29,12 +29,13 @@ try {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
     <title>Document</title>
 </head>
 <body>
     <?= "Votre commande n° {$numCommande} pour un prix de {$prixCommande}"; ?>
     <p>Vous resevrez mail dés que votre commande sera prête</p>
-    <a href="listecommande.php">Acceuil</a>
+    <button><a href="Listecommande.php">Accueil</a></button>
     
 
   
