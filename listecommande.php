@@ -50,14 +50,10 @@ if ($submit) {
     // Récupère le contenu des checkbox
     if ($type == "place"){
         $_SESSION['typeCommande'] = "sur place";
-        //header("Location: payer.php");
-        //exit();
     }
 
     if ($type == "emporter") {
         $_SESSION['typeCommande'] = "à emporter";
-        //header("Location: payer.php");
-        //exit();
     }
 }
 
