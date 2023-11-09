@@ -5,6 +5,12 @@ include "Include/db_functions.php";
 $dbh = db_connect();
 
 $typeCommande = $_SESSION['typeCommande'];
+$message = array();
+
+$nb_cb = isset($_POST['nb_cb']) ? $_POST['nb_cb'] : '';
+$dt_expiration = isset($_POST['dt_expiration']) ? $_POST['dt_expiration'] : '';
+$cvc = isset($_POST['cvc']) ? $_POST['cvc'] : '';
+$submit = isset($_POST['submit']) ?? false;
 
 try {
   // Vérifier la connexion à la base de données
@@ -23,6 +29,20 @@ try {
   die("Erreur lors de la requête SQL : " . $ex->getMessage());
 }
 
+if ($submit) {
+  if(empty($nb_cb)){
+    $message[] = "Ajouter le numéro de la carte bancaire";
+  }
+  if(empty($dt_expiration)){
+    $message[] = "La date d'expiration est obligatoir";
+  }
+  if(empty($cvc)){
+    $message[] = "Ajouter le numéro CVC";
+  }if (count($message) == 0) {
+    header("Location: listecommande.php");
+  }
+}
+
 ?>
 
 <!doctype html>
@@ -39,43 +59,27 @@ try {
   <h1>Payer</h1>
   <?= "Vous avez commandé {$typeCommande} "; ?><br>
   <?= "Commande n° {$numCommande} pour un montant de {$prixCommande}"; ?>
-  <p>Numéro de carte bancaire<br><input type="text" name="" id=""></p>
-  <p>Date d'expiration</p>
-  <select name="mois">
-    <option value="Janvier">mois</option>
-    <option value="Janvier">Janvier</option>
-    <option value="Février">Février</option>
-    <option value="Mars">Mars</option>
-    <option value="Avril">Avril</option>
-    <option value="Mai">Mai</option>
-    <option value="Juin">Juin</option>
-    <option value="Juillet">Juillet</option>
-    <option value="Août">Août</option>
-    <option value="Septembre">Septembre</option>
-    <option value="Octobre">Octobre</option>
-    <option value="Novembre">Novembre</option>
-    <option value="Décembre">Décembre</option>
-  </select>
-  <select name="année">
-    <option value="2023">année</option>
-    <option value="2023">2023</option>
-    <option value="2024">2024</option>
-    <option value="2025">2025</option>
-    <option value="2026">2026</option>
-    <option value="2027">2027</option>
-    <option value="2028">2028</option>
-    <option value="2029">2029</option>
-    <option value="2030">2030</option>
-    <option value="2031">2031</option>
-    <option value="2032">2032</option>
-    <option value="2033">2033</option>
-    <option value="2034">2034</option>
-    <option value="2034">2034</option>
-  </select>
+  
+  <?php
+    if (count($message) > 0) {
+      echo "<ul>";
+      foreach ($message as $messages) {
+        echo "<li>" . $messages . "</li>";
+      }
+      echo "</ul>";
+    }
+  ?>
 
-  <p>CVC<br><input type="text" name="" id=""></p>
-  <input type="button" value="Valider">
-  <a href="listecommande.php">Retour</a>
+  <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+    <p>Numéro de carte bancaire <br> <input type="text" name="nb_cb" id="nb_cb"></p>
+    <p>Date d'expiration <br> <input type="date" name="dt_expiration" id="dt_expiration"></p>
+    <p>CVC <br> <input type="text" name="cvc" id="cvc"></p>
+    <input type="submit" value="Payer" name="submit">
+    <a href="listecommande.php">Retour</a>
+  </form>
+
+  
+  
 </body>
 
 </html>
