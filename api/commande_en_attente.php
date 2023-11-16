@@ -8,7 +8,7 @@ try {
     $sth->execute();
     $rows = $sth->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $ex) {
-    die("<p>Erreur lors de la requête SQL : " . $ex->getMessage() . "</p>");
+    die();
 }
 
 $json = json_encode($rows);

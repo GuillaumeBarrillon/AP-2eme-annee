@@ -30,7 +30,7 @@ $stmt->execute([
     ":idCmd" => $idCommande
 ]);
 
-Reponse::reponseJsonEtDie([
+Reponse::reponseJsonSansDie([
     "success" => true,
     "message" => "La commande $idCommande est maintenant acceptee !"
 ]);

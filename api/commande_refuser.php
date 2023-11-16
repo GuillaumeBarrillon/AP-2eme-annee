@@ -28,7 +28,7 @@ $stmt = $dbh->prepare("UPDATE commande SET id_etat = 3 WHERE id_commande = :idCm
 $stmt->execute([
     ":idCmd" => $idCommande
 ]);
-Reponse::reponseJsonEtDie([
+Reponse::reponseJsonSansDie([
     "success" => true,
     "message" => "La commande $idCommande est maintenant acceptee !"
 ]);
