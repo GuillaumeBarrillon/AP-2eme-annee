@@ -1,27 +1,22 @@
-# A first-level heading
-## A second-level heading
-### A third-level heading
+#Site restaurant 
 
 
-Site restaurant 
+Le client arrive sur la page d'accueil du site du restaurant il s'inscrit sur le site, se connecte, arrive sur la page où il peut commander sa nourriture une fois cela fait il indique s'il veut consommer sur place ou emporter et valide sa commande. Une fois cela fait il entre ses coordonnées bancaire et attend l'envoie d'un mail de validation pour recevoir sa commande.
+
+#Installation :
+
+    - Installer projet resto dans le dossier xampp/htdocs/projet/
+    - Créer la base de données 'ap3' dans xampp
 
 
-Le client arrive sur la page d'acceuil du site du restaurant il s'inscrit sur le site, se connecte, arrive sur la page où il peut commender sa nourriture une fois cela fait il indique si il veut consomer sur place ou emporter et valide sa commande. Une fois cela fait il entre ses coordonnée bancaire et attend l'envoie d'un mail de validation pour ressevoir sa commande.
-
-Instalation :
-
-    - InstaleZ projet resto dans le docier xampp/htdocs/projet/
-    - Crée la base de données 'ap3' dans xampp
-
-
-Pour se connecter :
+#Pour se connecter :
 
     Login        : bob
     Mot de passe : bob
 
-Navigation dans le projet :
+#Navigation dans le projet :
 
-index.php -> connexion.php -> liste_commande.php -> payer.php -> info.php -> liste_commade.php -> déconnection
+index.php -> connexion.php -> liste_commande.php -> payer.php -> info.php -> liste_commande.php -> déconnexion
 
-On se connecte puis on fait sa commande on paye on est informer que l'on va recevoir un mail et que la commende à été prise en compte 
-puis on peut retourner sur la liste des commande et se déconnecter.
+On se connecte puis on fait sa commande on paye on est informer que l'on va recevoir un mail et que la commande a bien été prise en compte 
+puis on peut retourner sur la liste des commandes et se déconnecter.
