@@ -19,4 +19,9 @@ Pour se connecter :
     Login        : bob
     Mot de passe : bob
 
+Navigation dans le projet :
 
+index.php -> connexion.php -> liste_commande.php -> payer.php -> info.php -> liste_commade.php -> déconnection
+
+On se connecte puis on fait sa commande on paye on est informer que l'on va recevoir un mail et que la commende à été prise en compte 
+puis on peut retourner sur la liste des commande et se déconnecter.
