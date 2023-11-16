@@ -1,20 +1,20 @@
-#Site restaurant 
+# Site restaurant 
 
 
 Le client arrive sur la page d'accueil du site du restaurant il s'inscrit sur le site, se connecte, arrive sur la page où il peut commander sa nourriture une fois cela fait il indique s'il veut consommer sur place ou emporter et valide sa commande. Une fois cela fait il entre ses coordonnées bancaire et attend l'envoie d'un mail de validation pour recevoir sa commande.
 
-#Installation :
+# Installation :
 
     - Installer projet resto dans le dossier xampp/htdocs/projet/
     - Créer la base de données 'ap3' dans xampp
 
 
-#Pour se connecter :
+# Pour se connecter :
 
     Login        : bob
     Mot de passe : bob
 
-#Navigation dans le projet :
+# Navigation dans le projet :
 
 index.php -> connexion.php -> liste_commande.php -> payer.php -> info.php -> liste_commande.php -> déconnexion
 
