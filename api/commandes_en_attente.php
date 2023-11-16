@@ -1,10 +1,8 @@
 <?php
-include "Include/db_functions.php";
-db_connect();
+include "../Include/db_functions.php";
+$dbh = db_connect();
 
-$tableau = array();
-
-$sql = "Select * FROM commande;";
+$sql = "SELECT * FROM commande WHERE id_etat = 0;";
 try {
     $sth = $dbh->query($sql);
     $sth->execute();
@@ -13,7 +11,5 @@ try {
     die("<p>Erreur lors de la requête SQL : " . $ex->getMessage() . "</p>");
 }
 
-foreach($rows as $row){
-    $tableau[ $row['id_commande'],$row['id_commande'],$row['id_commande'], $row['id_commande'], $row['id_commande'] ];
-}
-?>
+$json = json_encode($rows);
+echo $json;
