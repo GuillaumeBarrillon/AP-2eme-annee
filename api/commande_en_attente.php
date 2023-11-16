@@ -13,3 +13,5 @@ try {
 
 $json = json_encode($rows);
 echo $json;
+
+die();
