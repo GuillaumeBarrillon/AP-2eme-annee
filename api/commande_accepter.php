@@ -1,13 +1,15 @@
 <?php
 
 include "../Include/db_functions.php";
+include "../class/Reponse.php";
 
-if(!isset($_GET["id_commande"])){
+if (!isset($_GET["id_commande"])) {
     Reponse::reponseJsonEtDie([
         "success" => false,
         "erreur" => "L'id de commande n'est pas fourni"
-    ]);  
+    ]);
 }
+
 $idCommande = $_GET["id_commande"];
 
 $dbh = db_connect();
@@ -16,7 +18,7 @@ $stmt->execute([
     ":idCmd" => $idCommande
 ]);
 $row = $stmt->fetch();
-if($row == NULL){
+if ($row == NULL) {
     Reponse::reponseJsonEtDie([
         "success" => false,
         "erreur" => "La commande $idCommande n'existe pas !"
@@ -27,6 +29,7 @@ $stmt = $dbh->prepare("UPDATE commande SET id_etat = 1 WHERE id_commande = :idCm
 $stmt->execute([
     ":idCmd" => $idCommande
 ]);
+
 Reponse::reponseJsonEtDie([
     "success" => true,
     "message" => "La commande $idCommande est maintenant acceptee !"
