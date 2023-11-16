@@ -83,6 +83,7 @@ if ($submit) {
 </head>
 
 <body>
+    <a href="deconnexion.php">Déconnexion</a>
     <form method="POST">
         <table>
             <th>Nom du plat</th>
