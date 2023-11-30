@@ -1,5 +1,7 @@
 <?php
-session_start();
+
+include "Include/HorizontalTopBar.php";
+
 //
 // Connexion à la base de données
 //

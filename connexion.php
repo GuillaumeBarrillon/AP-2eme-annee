@@ -32,6 +32,7 @@ if ($submit and !empty($login) and !empty($password)) {
         if (password_verify($password, $rows['password']))
         {
             $_SESSION['user_id'] = $rows['id_user'];
+            $_SESSION['user_name'] = $rows['login'];
             header("Location: listecommande.php");
             exit();
         
