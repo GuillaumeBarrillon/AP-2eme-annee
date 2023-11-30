@@ -85,43 +85,35 @@ if ($submit) {
 
 <body>
     <form method="POST">
-        <table>
-            <th>Nom du plat</th>
-            <th>Prix</th>
-            <th>Quantité</th>
-
-
+        <div class="product-list">
             <?php
             if (count($rows) > 0) {
                 foreach ($rows as $row) {
-                    echo "<tr>";
-                    echo "<td>" . $row["libelle"] . "</td>";
-                    echo "<td><p>" . $row["prix_ht"] . "€</p></td>";
-                    echo "<td> <input type='number' name='qte_{$row['id_produit']}' id='number'> </td>";
-                    echo "</tr>";
+                    echo "<div class='product-card'>";
+                    echo "<div class='product-image'>";
+                    echo "<img src='img/{$row['Image']}' alt='Image Produit'>";
+                    echo "</div>"; // fermeture div .product-image
+                    echo "<div class='product-details'>";
+                    echo "<div class='text-details'>";
+                    echo "<div class='product-name'>" . $row["libelle"] . "</div>";
+                    echo "<div class='product-price'>" . $row["prix_ht"] . "€</div>";
+                    echo "</div>"; // fermeture div .text-details
+                    echo "<div class='quantity'>";
+                    echo "<label for='qte_{$row['id_produit']}'>Quantité:</label>";
+                    echo "<input class='quantity-input' type='number' name='qte_{$row['id_produit']}' id='qte_{$row['id_produit']}' />";
+                    echo "</div>"; // fermeture div .quantity
+                    echo "</div>"; // fermeture div .product-details
+                    echo "</div>"; // fermeture div .product-card
                 }
             }
-
             ?>
-        </table>
-
-
-
+        </div>
 
         <h3>Veuillez choisir:</h3>
-
         <input type="radio" id="surPlace" name="typeCommande" value="place" checked /> Sur place <br>
         <input type="radio" id="aEmporter" name="typeCommande" value="emporter" /> A emporter<br>
         <input type="submit" name="submit" value="Payer">
     </form>
-
-
-
-
-
-
-
-
 </body>
 
 </html>

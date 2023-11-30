@@ -91,3 +91,69 @@ nav .right {
 nav * {
     margin: 0;
 }
+
+/* CSS pour les cartes produits */
+
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* Espacement équilibré entre les cartes */
+    padding: 0 10px; /* Ajoute une marge sur les côtés */
+}
+
+.product-card {
+    border-radius: 10px; /* Bords arrondis */
+    overflow: hidden; /* Cache tout ce qui déborde */
+    margin-bottom: 20px;
+    width: calc(16.666% - 20px); /* Calcul pour afficher 6 cartes par ligne avec marges */
+    height: 300px; /* Hauteur des cartes */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s;
+    background-color: rgba(255, 255, 255, 0.8); /* Légèrement transparente */
+    margin-bottom: 20px;
+    box-sizing: border-box; /* Inclut les marges dans la largeur */
+    padding: 10px; /* Ajoute un peu de remplissage à l'intérieur de la carte */
+}
+
+.product-card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.4);
+}
+
+.product-image {
+    position: relative;
+    height: 60%; /* Taille de l'image à 60% de la carte */
+}
+
+.product-image img {
+    width: 100%; /* Prend la largeur totale du conteneur */
+    height: 100%; /* Prend la hauteur totale du conteneur */
+    border-top-left-radius: 10px; /* Arrondit les coins de l'image */
+    border-top-right-radius: 10px;
+    object-fit: cover;
+}
+
+.product-details {
+    padding: 10px; /* Ajoute un peu de remplissage à l'intérieur de la carte */
+}
+
+.text-details {
+    text-align: center; /* Centre le texte */
+}
+
+.product-name {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.product-price {
+    color: #777;
+    margin-bottom: 5px;
+}
+
+.quantity {
+    text-align: center; /* Centre la quantité */
+}
+
+.quantity-input {
+    width: 50px;
+}
