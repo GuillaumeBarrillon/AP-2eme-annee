@@ -39,3 +39,9 @@ li{
 .connexion a:hover {
     transform: scale(1.1);
 }
+
+.horizontal_bar{
+    float: left;
+    background-color: blue;
+    
+}
