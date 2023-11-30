@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -8,10 +11,10 @@
 </head>
 
 <nav>
-    <h3>Navigation</h3>
-    <button><a href="../index.php">Accueil</a></button><br>
-    <button><a href="../listecommande.php">Liste commande</a></button>
-
+<ul>
+  <p>User : <?php echo $_SESSION['user_name'];?></p>
+  <li><a href="deconnexion.php">Déconnexion</a></li>
+</ul> 
 </nav>
 
 <body>
