@@ -13,7 +13,7 @@ session_start();
 <nav>
 <ul>
   <p>User : <?php echo $_SESSION['user_name'];?></p>
-  <li><a href="deconnexion.php">Déconnexion</a></li>
+  <a href="deconnexion.php">Déconnexion</a>
 </ul> 
 </nav>
 
