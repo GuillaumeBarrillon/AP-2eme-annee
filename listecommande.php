@@ -5,9 +5,7 @@ include 'Include/db_functions.php';
 $dbh = db_connect();
 
 $submit = isset($_POST['submit']);
-
 if ($submit) {
-
     $quantites = [];
     foreach ($_POST as $key => $value) {
         $exploded = explode("_", $key);
@@ -41,7 +39,9 @@ if ($submit) {
         ]);
 
         $idCommandeInseree = $dbh->lastInsertId();
-
+        $_SESSION["commande"] = [
+            "id" => $idCommandeInseree
+        ];
         foreach ($quantites as $identifiantPlat => $quantite) {
             // Etape 1. Insert dans ligne commande
             $sql = "INSERT INTO ligne(id_commande, id_produit, qte, total_ligne_ht) VALUES(:id_commande, :idproduit, :qte, :total_ligne_ht)";
@@ -54,6 +54,7 @@ if ($submit) {
             ]);
         }
     }
+   
     header("Location: payer.php");
 }
 
@@ -79,7 +80,7 @@ if ($submit) {
 <head>
     <meta charset="utf-8">
     <title>Liste Commande</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>

@@ -1,6 +1,11 @@
 <?php
 include "Include/db_functions.php";
 
+if(!isset($_SESSION["commande"])){
+  header("Location: listecommande.php");
+  die();
+}
+
 // Connexion à la base
 $dbh = db_connect();
 
@@ -12,18 +17,18 @@ $dt_expiration = isset($_POST['dt_expiration']) ? $_POST['dt_expiration'] : '';
 $cvc = isset($_POST['cvc']) ? $_POST['cvc'] : '';
 $submit = isset($_POST['submit']) ?? false;
 
+$numCommande = $_SESSION["commande"]["id"];
 try {
   // Vérifier la connexion à la base de données
   if (!$dbh) {
     die("<p>Erreur de connexion à la base de données</p>");
   }
   $id = $_SESSION['user_id'];
-  $sql = "SELECT id_commande, total_commande FROM commande WHERE id_user = :id_user";
+  $sql = "SELECT id_commande, total_commande FROM commande WHERE id_commande = :idcmd";
   $sth = $dbh->prepare($sql);
-  $sth->bindParam(':id_user', $id);
+  $sth->bindParam(':idcmd', $numCommande);
   $sth->execute();
   $rows = $sth->fetch(PDO::FETCH_ASSOC);
-  $numCommande = $rows['id_commande'];
   $prixCommande = $rows['total_commande'];
 } catch (PDOException $ex) {
   die("Erreur lors de la requête SQL : " . $ex->getMessage());
@@ -68,7 +73,7 @@ if ($submit) {
 <body>
   <h1>Payer</h1>
   <?= "Vous avez commandé {$typeCommande} "; ?><br>
-  <?= "Commande n° {$numCommande} pour un montant de {$prixCommande}"; ?>
+  <?= "Commande n° {$numCommande} pour un montant de {$prixCommande}€"; ?>
   
   <?php
     if (count($message) > 0) {
