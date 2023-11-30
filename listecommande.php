@@ -99,7 +99,7 @@ if ($submit) {
                     echo "<div class='product-price'>" . $row["prix_ht"] . "€</div>";
                     echo "</div>"; // fermeture div .text-details
                     echo "<div class='quantity'>";
-                    echo "<label for='qte_{$row['id_produit']}'>Quantité:</label>";
+                    echo "<label for='qte_{$row['id_produit']}'>Quantité: </label>";
                     echo "<input class='quantity-input' type='number' name='qte_{$row['id_produit']}' id='qte_{$row['id_produit']}' />";
                     echo "</div>"; // fermeture div .quantity
                     echo "</div>"; // fermeture div .product-details
