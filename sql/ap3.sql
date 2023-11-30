@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  jeu. 16 nov. 2023 à 14:18
--- Version du serveur :  10.4.6-MariaDB
--- Version de PHP :  7.2.22
+-- Généré le : jeu. 30 nov. 2023 à 14:08
+-- Version du serveur : 10.4.28-MariaDB
+-- Version de PHP : 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,8 +18,10 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données :  `ap3`
+-- Base de données : `ap3`
 --
+CREATE DATABASE IF NOT EXISTS `ap3` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `ap3`;
 
 -- --------------------------------------------------------
 
@@ -35,14 +36,14 @@ CREATE TABLE `commande` (
   `date` datetime NOT NULL DEFAULT current_timestamp(),
   `total_commande` decimal(10,2) NOT NULL DEFAULT 0.00,
   `type_conso` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Déchargement des données de la table `commande`
 --
 
 INSERT INTO `commande` (`id_commande`, `id_user`, `id_etat`, `date`, `total_commande`, `type_conso`) VALUES
-(1, 3, 0, '2023-11-16 14:17:31', '25.30', 2);
+(1, 3, 0, '2023-11-16 14:17:31', 25.30, 2);
 
 -- --------------------------------------------------------
 
@@ -56,17 +57,17 @@ CREATE TABLE `ligne` (
   `id_produit` int(11) NOT NULL,
   `qte` int(11) NOT NULL DEFAULT 0,
   `total_ligne_ht` decimal(10,2) NOT NULL DEFAULT 0.00
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Déchargement des données de la table `ligne`
 --
 
 INSERT INTO `ligne` (`id_ligne`, `id_commande`, `id_produit`, `qte`, `total_ligne_ht`) VALUES
-(1, 1, 1, 1, '2.00'),
-(2, 1, 2, 2, '10.00'),
-(3, 1, 3, 1, '3.00'),
-(4, 1, 4, 2, '8.00');
+(1, 1, 1, 1, 2.00),
+(2, 1, 2, 2, 10.00),
+(3, 1, 3, 1, 3.00),
+(4, 1, 4, 2, 8.00);
 
 --
 -- Déclencheurs `ligne`
@@ -140,18 +141,20 @@ CREATE TABLE `produit` (
   `id_produit` int(11) NOT NULL,
   `libelle` varchar(255) NOT NULL,
   `prix_ht` decimal(10,2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Déchargement des données de la table `produit`
 --
 
 INSERT INTO `produit` (`id_produit`, `libelle`, `prix_ht`) VALUES
-(1, 'pâtes', '2.00'),
-(2, 'pizza', '5.00'),
-(3, 'salade cesard', '3.00'),
-(4, 'poisson', '4.00'),
-(5, 'riz', '2.00');
+(1, 'Pâtes', 2.00),
+(2, 'Pizza', 5.00),
+(3, 'salade cesard', 3.00),
+(4, 'Poisson', 4.00),
+(5, 'Riz', 2.00),
+(6, 'Pizza Bosca', 17.00),
+(7, 'Coxinhas boeuf', 8.00);
 
 -- --------------------------------------------------------
 
@@ -164,7 +167,7 @@ CREATE TABLE `user` (
   `login` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Déchargement des données de la table `user`
@@ -225,7 +228,7 @@ ALTER TABLE `ligne`
 -- AUTO_INCREMENT pour la table `produit`
 --
 ALTER TABLE `produit`
-  MODIFY `id_produit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_produit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT pour la table `user`
