@@ -42,6 +42,6 @@ li{
 
 .horizontal_bar{
     float: left;
-    background-color: blue;
+    background-color: rgba(0, 0, 255, 0.1);
     
 }
