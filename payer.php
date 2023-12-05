@@ -1,7 +1,7 @@
 <?php
 include "Include/db_functions.php";
 
-if(!isset($_SESSION["commande"])){
+if (!isset($_SESSION["commande"])) {
   header("Location: listecommande.php");
   die();
 }
@@ -35,22 +35,22 @@ try {
 }
 
 if ($submit) {
-  if(empty($nb_cb)){
+  if (empty($nb_cb)) {
     $message[] = "Ajouter le numéro de la carte bancaire";
   }
 
-  if (!mb_strlen($nb_cb) == 16){
+  if (!mb_strlen($nb_cb) == 16) {
     $message[] = "Le numéro de la carte bancaire est de 16 caracthère";
   }
 
-  if(empty($dt_expiration)){
+  if (empty($dt_expiration)) {
     $message[] = "La date d'expiration est obligatoir";
   }
-  if(empty($cvc)){
+  if (empty($cvc)) {
     $message[] = "Ajouter le numéro CVC";
   }
-  
-  if (!mb_strlen($nb_cb) == 3){
+
+  if (!mb_strlen($nb_cb) == 3) {
     $message[] = "Le numéro du CVC est de 3";
   }
 
@@ -63,6 +63,7 @@ if ($submit) {
 
 <!doctype html>
 <html lang="fr">
+
 <head>
   <meta charset="utf-8">
   <title>Payer</title>
@@ -72,17 +73,25 @@ if ($submit) {
 
 <body>
   <h1>Payer</h1>
-  <?= "Vous avez commandé {$typeCommande} "; ?><br>
+  <?php echo "Vous avez commandé ";
+  if ($typeCommande == 2) 
+  {
+    echo "sur place";
+  } else
+  {
+    echo "à emporter";
+  }
+  ?><br>
   <?= "Commande n° {$numCommande} pour un montant de {$prixCommande}€"; ?>
-  
+
   <?php
-    if (count($message) > 0) {
-      echo "<ul>";
-      foreach ($message as $messages) {
-        echo "<li>" . $messages . "</li>";
-      }
-      echo "</ul>";
+  if (count($message) > 0) {
+    echo "<ul>";
+    foreach ($message as $messages) {
+      echo "<li>" . $messages . "</li>";
     }
+    echo "</ul>";
+  }
   ?>
 
   <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
@@ -93,8 +102,8 @@ if ($submit) {
     <button><a href="listecommande.php">Retour</a></button>
   </form>
 
-  
-  
+
+
 </body>
 
 </html>
