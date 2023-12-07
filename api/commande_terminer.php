@@ -32,5 +32,5 @@ $stmt->execute([
 ]);
 Reponse::reponseJsonSansDie([
     "success" => true,
-    "message" => "La commande $idCommande est maintenant terminée !"
+    "message" => "La commande $idCommande est maintenant terminee !"
 ]);
