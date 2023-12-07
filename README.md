@@ -21,6 +21,10 @@ index.php -> connexion.php -> liste_commande.php -> payer.php -> info.php -> lis
 On se connecte puis on fait sa commande on paye on est informer que l'on va recevoir un mail et que la commande a bien été prise en compte 
 puis on peut retourner sur la liste des commandes et se déconnecter.
 
+# Localisation du fichier exemple JSON :
+
+AP-2EME-ANNEE/exemple.JSON
+
 # Documentation technique des echanges :
 
 Quand on envoie une requête qui demande au serveur renvoyer sous la forme d'un fichier JSON la liste des commandes en attente dans la base de données.
