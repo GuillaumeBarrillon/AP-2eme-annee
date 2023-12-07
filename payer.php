@@ -1,5 +1,6 @@
 <?php
 include "Include/db_functions.php";
+include "Include/Init.php";
 
 if (!isset($_SESSION["commande"])) {
   header("Location: listecommande.php");

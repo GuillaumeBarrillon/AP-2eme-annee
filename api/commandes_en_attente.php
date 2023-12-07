@@ -1,5 +1,7 @@
 <?php
 include "../Include/db_functions.php";
+include "../Include/HorizontalTopBar.php";
+
 $dbh = db_connect();
 
 $sql = "SELECT * FROM commande WHERE id_etat = 0;";

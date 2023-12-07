@@ -1,11 +1,6 @@
 <?php
+
 session_start();
-
-if (isset($_SESSION['user_name']))
-{
-  include "Include/HorizontalTopBar.php";
-}
-
 
 //
 // Connexion à la base de données

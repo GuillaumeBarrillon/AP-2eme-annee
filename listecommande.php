@@ -1,5 +1,6 @@
 <?php
 include 'Include/db_functions.php';
+include "Include/Init.php";
 
 // Connexion à la base
 $dbh = db_connect();
