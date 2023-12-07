@@ -1,6 +1,5 @@
 <?php
 include "../Include/db_functions.php";
-include "../Include/HorizontalTopBar.php";
 
 $dbh = db_connect();
 
