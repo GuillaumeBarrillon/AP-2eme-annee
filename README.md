@@ -27,11 +27,11 @@ AP-2EME-ANNEE/exemple.JSON
 
 # Documentation technique des echanges :
 
-Quand on envoie une requête qui demande au serveur renvoyer sous la forme d'un fichier JSON la liste des commandes en attente dans la base de données.
+Quand on envoie une requête <http://localhost/projet/AP-2eme-annee/api/commandes_en_attente.php> le serveur renvoi sous format JSON la liste des commandes en attente dans la base de données.
 
-Quand on envoie une requête d'acceptation la commande le serveur modifie l'état de la commande de la base de donnée  en 'accepter'.
+Quand on envoie une requête <http://localhost/projet/AP-2eme-annee/api/commande_accepter.php?id_commande=1> d'acceptation de la commande. Le serveur modifie l'état de la commande dans la base de donnée en 'accepter'.
 
-Quand on envoie une requête de refus de la commande le serveur modifie l'état de la commande de la base de donnée en 'refuser'.
+Quand on envoie une requête <http://localhost/projet/AP-2eme-annee/api/commande_refuser.php?id_commande=1> qui refuse la commande. Le serveur modifie l'état de la commande dans la base de donnée en 'refuser'.
 
 
-Quand on envoie une requête de changement d'état en 'prête' le serveur doit changer l'état de la commande dans la base de données en 'prêt'.
+Quand on envoie une requête de changement d'état <http://localhost/projet/AP-2eme-annee/api/commande_refuser.php?id_commande=1>. Le serveur doit changer l'état de la commande dans la base de données en 'prêt'.
