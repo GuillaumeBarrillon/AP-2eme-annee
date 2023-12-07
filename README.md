@@ -20,3 +20,14 @@ index.php -> connexion.php -> liste_commande.php -> payer.php -> info.php -> lis
 
 On se connecte puis on fait sa commande on paye on est informer que l'on va recevoir un mail et que la commande a bien été prise en compte 
 puis on peut retourner sur la liste des commandes et se déconnecter.
+
+# Documentation technique des echanges :
+
+Quand on envoie une requête qui demande au serveur renvoyer sous la forme d'un fichier JSON la liste des commandes en attente dans la base de données.
+
+Quand on envoie une requête d'acceptation la commande le serveur modifie l'état de la commande de la base de donnée  en 'accepter'.
+
+Quand on envoie une requête de refus de la commande le serveur modifie l'état de la commande de la base de donnée en 'refuser'.
+
+
+Quand on envoie une requête de changement d'état en 'prête' le serveur doit changer l'état de la commande dans la base de données en 'prêt'.

@@ -30,5 +30,5 @@ $stmt->execute([
 ]);
 Reponse::reponseJsonSansDie([
     "success" => true,
-    "message" => "La commande $idCommande est maintenant acceptee !"
+    "message" => "La commande $idCommande est maintenant refusée !"
 ]);
