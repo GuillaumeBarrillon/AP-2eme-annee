@@ -14,12 +14,29 @@ Le client arrive sur la page d'accueil du site du restaurant il s'inscrit sur le
     Login        : bob
     Mot de passe : bob
 
+# Description des valeurs possibles :
+
+    Type de consommation:
+
+        Sur place : id = 0
+        A emporter : id = 1
+
+    Etat de la commande:
+
+        En attente : id=0
+        Terminer : id=2
+        Refuser : id=3
+        Accepter : id=1
+
 # Navigation dans le projet :
 
 index.php -> connexion.php -> liste_commande.php -> payer.php -> info.php -> liste_commande.php -> déconnexion
 
 On se connecte puis on fait sa commande on paye on est informer que l'on va recevoir un mail et que la commande a bien été prise en compte 
 puis on peut retourner sur la liste des commandes et se déconnecter.
+
+# Document d'exploiation :
+
 
 # Localisation du fichier exemple JSON :
 
