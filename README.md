@@ -37,6 +37,13 @@ puis on peut retourner sur la liste des commandes et se déconnecter.
 
 # Document d'exploiation :
 
+Se connecter: Pour se connecter il est obigatoir d'entre un identifient et un mot de passe 
+S'inscrire  : Pour s'inscrire il est obligatoir d'entre un identifien et un mot de passe le mail est optionnel
+Commander   : Pour commader il est obligatoir d'entrer des quantités aux différentes commamndes et d'attribuer un type de consomation a         
+              la commande
+Payer       : Pour payer il faut antre les code d'une carte bancaire c'est a dire les 16 chifres de la carte  les 3 chifres CVC et             
+              la date d'expiration de la carte bancaire.
+Info        : Info donne le numéro de commande et le prix
 
 # Localisation du fichier exemple JSON :
 
