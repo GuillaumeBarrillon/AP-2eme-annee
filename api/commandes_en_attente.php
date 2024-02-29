@@ -47,3 +47,4 @@ echo json_encode([
     "nbCommandes" => count($commandesGrouped),
     "commandes" => $commandesGrouped
 ], JSON_PRETTY_PRINT);
+header("Content-type: application/json; charset=utf-8"); 
