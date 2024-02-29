@@ -49,6 +49,10 @@ Info        : Info donne le numéro de commande et le prix
 
 AP-2EME-ANNEE/exemple.JSON
 
+# Maquette JSON :
+    Le JSON renvoie la liste de toute les commandes ne selon leurs état, la date, l'utilisateur, le type de tva avec pour chaque commandes id du produit, de la quantiter, le prix de la linge, l'id de la ligne.
+
+
 # Documentation technique des echanges :
 
 Quand on envoie une requête <http://localhost/projet/AP-2eme-annee/api/commandes_en_attente.php> le serveur renvoi sous format JSON la liste des commandes en attente dans la base de données.
