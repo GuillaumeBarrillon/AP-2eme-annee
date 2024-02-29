@@ -1,5 +1,6 @@
 <?php
 include "../Include/db_functions.php";
+
 $dbh = db_connect();
 
 // Sélectionner les commandes avec leurs lignes associées
