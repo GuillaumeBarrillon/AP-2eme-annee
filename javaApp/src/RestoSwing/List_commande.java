@@ -61,7 +61,7 @@ public class List_commande extends javax.swing.JFrame {
                         {null, null, null, null, null, null}
                 },
                 new String [] {
-                        "id", "date", "heure", "etat", "nb plat", "montant"
+                        "id", "date", "heure", "etat", "nombre plat", "montant"
                 }
         ));
         jScrollPane3.setViewportView(jTable3);
@@ -115,4 +115,59 @@ public class List_commande extends javax.swing.JFrame {
     private javax.swing.JTable jTable3;
     private javax.swing.JButton BoutonDetails;
     // End of variables declaration//GEN-END:variables
+
+    private int id;
+    private int idProduit;
+    private String LibProduit;
+    private double prixHT;
+    private String photo;
+    private int qte;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getIdProduit() {
+        return idProduit;
+    }
+
+    public void setIdProduit(int idProduit) {
+        this.idProduit = idProduit;
+    }
+
+    public String getLibProduit() {
+        return LibProduit;
+    }
+
+    public void setLibProduit(String libProduit) {
+        LibProduit = libProduit;
+    }
+
+    public double getPrixHT() {
+        return prixHT;
+    }
+
+    public void setPrixHT(double prixHT) {
+        this.prixHT = prixHT;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    public int getQte() {
+        return qte;
+    }
+
+    public void setQte(int qte) {
+        this.qte = qte;
+    }
 }
