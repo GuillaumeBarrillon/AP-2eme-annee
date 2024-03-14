@@ -19,7 +19,7 @@ public class Restoswing {
         }   // Permet de donner un aspect adapté à l'appareil
 
         ArrayList<Commande> commandesList = new ArrayList<>();
-        String jsonUrl = "http://127.0.0.1/projets/SIO2/AP/AP-2eme-annee/api/commandes_en_attente.php";
+        String jsonUrl = "http://127.0.0.1/projet\\AP-2eme-annee-1/api/commandes_en_attente.php";
         String jsonResponse = NetworkUtils.request(jsonUrl);
 
         if (jsonResponse != null) {
