@@ -10,7 +10,7 @@ public class Commande {
     private int typeConso;
     private String date;
     private double totalCommande;
-    private ArrayList<List_commande> LignesCommande;
+    private ArrayList<Ligne> LignesCommande;
 
     public Commande() {
         this.LignesCommande = new ArrayList<>();
@@ -64,11 +64,11 @@ public class Commande {
         this.totalCommande = totalCommande;
     }
 
-    public ArrayList<List_commande> getLignesCommande() {
+    public ArrayList<Ligne> getLignesCommande() {
         return LignesCommande;
     }
 
-    public void setLignesCommande(ArrayList<List_commande> lignesCommande) {
+    public void setLignesCommande(ArrayList<Ligne> lignesCommande) {
         this.LignesCommande = lignesCommande;
     }
 }

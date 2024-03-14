@@ -5,23 +5,26 @@
 package RestoSwing;
 
 import javax.swing.*;
+import java.util.ArrayList;
 
 /*
  * @author CN503273
  */
+
 public class List_commande extends javax.swing.JFrame {
 
+    private ArrayList<Commande> listCommandes;
     /**
      * Creates new form NewJFrame
      */
-    public List_commande() {
+    public List_commande(ArrayList<Commande> commandesList) {
+        this.listCommandes = commandesList;
         initComponents();
-        this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.setTitle("RestoSwing");
-
+        this.setVisible(true);
     }
 
     /**
@@ -33,7 +36,7 @@ public class List_commande extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton2 = new javax.swing.JButton();
+        quitButton = new javax.swing.JButton();
         BoutonDetails = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -41,8 +44,8 @@ public class List_commande extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton2.setText("Quiter");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        quitButton.setText("Quiter");
+        quitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
@@ -53,13 +56,18 @@ public class List_commande extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel1.setText("Commande");
 
+        Object[][] donneesTableau = new Object[listCommandes.size()][6];
+        for (int i = 0; i < listCommandes.size(); i++) {
+            Commande commande = listCommandes.get(i);
+            donneesTableau[i][0] = commande.getId();
+            donneesTableau[i][1] = commande.getDate().split(" ")[0];
+            donneesTableau[i][2] = commande.getDate().split(" ")[1];
+            donneesTableau[i][3] = commande.getIdEtat();
+            donneesTableau[i][4] = commande.getLignesCommande().size();
+            donneesTableau[i][5] = commande.getTotalCommande();
+        }
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
-                new Object [][] {
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null}
-                },
+                donneesTableau,
                 new String [] {
                         "id", "date", "heure", "etat", "nombre plat", "montant"
                 }
@@ -78,7 +86,7 @@ public class List_commande extends javax.swing.JFrame {
                                         .addGroup(layout.createSequentialGroup()
                                                 .addGap(50, 50, 50)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                        .addComponent(jButton2)
+                                                        .addComponent(quitButton)
                                                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                 .addGap(30, 30, 30)
                                                 .addComponent(BoutonDetails)))
@@ -97,19 +105,21 @@ public class List_commande extends javax.swing.JFrame {
                                                 .addGap(86, 86, 86)
                                                 .addComponent(BoutonDetails)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-                                .addComponent(jButton2)
+                                .addComponent(quitButton)
                                 .addGap(21, 21, 21))
         );
+
+
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        System.exit(0);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton quitButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable3;

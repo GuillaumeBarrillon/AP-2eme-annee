@@ -17,16 +17,16 @@ public class Restoswing {
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException |
                  UnsupportedLookAndFeelException e) {
         }   // Permet de donner un aspect adapté à l'appareil
-        List_commande list_commande = new List_commande(); // Créer l'application
 
         ArrayList<Commande> commandesList = new ArrayList<>();
-        String jsonUrl = "127.0.0.1/projets/SIO2/AP/AP-2eme-annee/api/commandes_en_attente.php";
+        String jsonUrl = "http://127.0.0.1/projets/SIO2/AP/AP-2eme-annee/api/commandes_en_attente.php";
         String jsonResponse = NetworkUtils.request(jsonUrl);
 
         if (jsonResponse != null) {
 
             try {
                 JSONObject json = new JSONObject(jsonResponse);
+                System.out.println(json);
 
                 JSONArray commandesArray = json.getJSONArray("commandes");
 
@@ -35,7 +35,7 @@ public class Restoswing {
                     JSONObject commandeObject = commandesArray.getJSONObject(i);
                     Commande commande = new Commande();
 
-                    commande.setId(commandeObject.getInt("id"));
+                    commande.setId(commandeObject.getInt("id_commande"));
                     commande.setIdUser(commandeObject.getInt("id_user"));
                     commande.setIdEtat(commandeObject.getInt("id_etat"));
                     commande.setTypeConso(commandeObject.getInt("type_conso"));
@@ -43,21 +43,17 @@ public class Restoswing {
                     commande.setTotalCommande(commandeObject.getDouble("total_commande"));
 
                     JSONArray lignesArray = commandeObject.getJSONArray("lignes");
-                    ArrayList<List_commande> lignesList = new ArrayList<>();
+                    ArrayList<Ligne> lignesList = new ArrayList<>();
 
                     for (int j = 0; j < lignesArray.length(); j++) {
                         JSONObject ligneObject = lignesArray.getJSONObject(j);
-                        List_commande ListCommande = new List_commande();
-
-                        ListCommande.setId(ligneObject.getInt("id"));
-                        JSONObject produitObject = ligneObject.getJSONObject("produit");
-                        ListCommande.setIdProduit(produitObject.getInt("id"));
-                        ListCommande.setLibProduit(produitObject.getString("libelle"));
-                        ListCommande.setPrixHT(produitObject.getDouble("prix_ht"));
-                        ListCommande.setPhoto(produitObject.getString("photo"));
-                        ListCommande.setQte(ligneObject.getInt("qte"));
-
-                        lignesList.add(ListCommande);
+                        Ligne ligne = new Ligne(
+                                ligneObject.getInt("id_ligne"),
+                                ligneObject.getInt("id_produit"),
+                                ligneObject.getInt("qte"),
+                                ligneObject.getString("total_ligne_ht")
+                        );
+                        lignesList.add(ligne);
 
                         System.out.println(commandesList);
                         System.out.println(lignesList);
@@ -67,7 +63,11 @@ public class Restoswing {
                     commandesList.add(commande);
 
                 }
+
+                List_commande listCommande = new List_commande(commandesList);
+
             } catch (Exception e) {
+                e.printStackTrace();
                 System.out.println(e);
             }
         } else {
