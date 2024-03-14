@@ -23,6 +23,7 @@ public class Liste_commande extends javax.swing.JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+//        this.setSize(800,800);
         this.setTitle("RestoSwing");
         this.setVisible(true);
     }
@@ -62,7 +63,7 @@ public class Liste_commande extends javax.swing.JFrame {
             donneesTableau[i][0] = commande.getId();
             donneesTableau[i][1] = commande.getDate().split(" ")[0];
             donneesTableau[i][2] = commande.getDate().split(" ")[1];
-            donneesTableau[i][3] = commande.getIdEtat();
+            donneesTableau[i][3] = ConvertisseurJson.ConveritsseurEtatJson(commande.getIdEtat());
             donneesTableau[i][4] = commande.getLignesCommande().size();
             donneesTableau[i][5] = commande.getTotalCommande();
         }
