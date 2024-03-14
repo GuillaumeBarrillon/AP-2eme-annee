@@ -3,7 +3,7 @@
  * Classe utilitaire de gestion des connexions Internet
  * Adaptée de celle que j'utilise avec Android
  */
-package restoswing;
+package apijava;
 
 import java.io.BufferedReader;
 import java.io.IOException;
