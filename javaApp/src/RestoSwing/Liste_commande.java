@@ -11,13 +11,13 @@ import java.util.ArrayList;
  * @author CN503273
  */
 
-public class List_commande extends javax.swing.JFrame {
+public class Liste_commande extends javax.swing.JFrame {
 
     private ArrayList<Commande> listCommandes;
     /**
      * Creates new form NewJFrame
      */
-    public List_commande(ArrayList<Commande> commandesList) {
+    public Liste_commande(ArrayList<Commande> commandesList) {
         this.listCommandes = commandesList;
         initComponents();
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -1,13 +1,11 @@
 package RestoSwing;
 
-import netscape.javascript.JSObject;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 
 import javax.swing.*;
-import java.net.URL;
 
 public class Restoswing {
 
@@ -64,7 +62,7 @@ public class Restoswing {
 
                 }
 
-                List_commande listCommande = new List_commande(commandesList);
+                Liste_commande listCommande = new Liste_commande(commandesList);
 
             } catch (Exception e) {
                 e.printStackTrace();
