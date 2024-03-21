@@ -23,8 +23,8 @@
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
-        <option name="accountId" value="f2271447-c5e2-4c4e-b674-7c863a3e462f" />
-        <option name="url" value="git@github.com:GuillaumeBarrillon/AP-2eme-annee.git" />
+        <option name="accountId" value="af9f7418-a90b-4432-9efd-996e8dbb7a27" />
+        <option name="url" value="https://github.com/GuillaumeBarrillon/AP-2eme-annee.git" />
       </UrlAndAccount>
     </option>
   </component>
@@ -47,10 +47,11 @@
     "Application.restowing.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/xampp/htdocs/projets/SIO2/AP/AP-2eme-annee/javaApp",
+    "last_opened_file_path": "/Applications/MAMP/htdocs/Projet/AP-2eme-annee",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -87,6 +88,7 @@
       <workItem from="1710422406660" duration="65000" />
       <workItem from="1710422481949" duration="62000" />
       <workItem from="1710422555606" duration="503000" />
+      <workItem from="1711030344088" duration="42000" />
     </task>
     <task id="LOCAL-00001" summary="Changement nom fichier">
       <option name="closed" value="true" />
