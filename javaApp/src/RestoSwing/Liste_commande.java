@@ -23,7 +23,6 @@ public class Liste_commande extends javax.swing.JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-//        this.setSize(800,800);
         this.setTitle("RestoSwing");
         this.setVisible(true);
     }
@@ -53,6 +52,13 @@ public class Liste_commande extends javax.swing.JFrame {
         });
 
         BoutonDetails.setText("Détail");
+        BoutonDetails.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                if(jTable3.getSelectedRow() != -1){
+                    new LigneFrame(listCommandes.get(jTable3.getSelectedRow()));
+                }
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel1.setText("Commande");

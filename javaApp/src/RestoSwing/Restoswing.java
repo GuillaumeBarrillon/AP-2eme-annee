@@ -39,6 +39,7 @@ public class Restoswing {
                     commande.setTypeConso(commandeObject.getInt("type_conso"));
                     commande.setDate(commandeObject.getString("date"));
                     commande.setTotalCommande(commandeObject.getDouble("total_commande"));
+                    commande.setLogin(commandeObject.getString("login"));
 
                     JSONArray lignesArray = commandeObject.getJSONArray("lignes");
                     ArrayList<Ligne> lignesList = new ArrayList<>();
