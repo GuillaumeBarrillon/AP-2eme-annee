@@ -4,10 +4,11 @@ include "../Include/db_functions.php";
 $dbh = db_connect();
 
 // Sélectionner les commandes avec leurs lignes associées
-$stmt = $dbh->prepare("SELECT commande.*, ligne.*
-FROM commande
-INNER JOIN ligne ON commande.id_commande = ligne.id_commande
-WHERE commande.id_etat = 0;");
+$stmt = $dbh->prepare("SELECT commande.*, ligne.*, user.login
+FROM commande, ligne, user
+WHERE commande.id_commande = ligne.id_commande
+AND commande.id_user = user.id_user 
+AND commande.id_etat = 0;");
 $stmt->execute();
 
 $commandes = $stmt->fetchAll();
@@ -25,6 +26,7 @@ foreach ($commandes as $commande) {
             'date' => $commande['date'],
             'total_commande' => $commande['total_commande'],
             'type_conso' => $commande['type_conso'],
+            'login' => $commande['login'],
             'lignes' => [] // Initialiser un tableau pour les lignes de commande
         ];
     }
@@ -47,4 +49,4 @@ echo json_encode([
     "nbCommandes" => count($commandesGrouped),
     "commandes" => $commandesGrouped
 ], JSON_PRETTY_PRINT);
-header("Content-type: application/json; charset=utf-8"); 
+//header("Content-type: application/json; charset=utf-8"); 
