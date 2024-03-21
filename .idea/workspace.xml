@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6481f7f3-c2f8-44d8-926a-7ddf3e2ada54" name="Changes" comment="Changement nom fichier" />
+    <list default="true" id="6481f7f3-c2f8-44d8-926a-7ddf3e2ada54" name="Changes" comment="Ajout de la SiteMap">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -51,7 +53,7 @@
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Applications/MAMP/htdocs/Projet/AP-2eme-annee",
+    "last_opened_file_path": "/Applications/MAMP/htdocs/Projet/2SIO/AP/AP-2eme-annee",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -89,6 +91,7 @@
       <workItem from="1710422481949" duration="62000" />
       <workItem from="1710422555606" duration="503000" />
       <workItem from="1711030344088" duration="42000" />
+      <workItem from="1711030474401" duration="1068000" />
     </task>
     <task id="LOCAL-00001" summary="Changement nom fichier">
       <option name="closed" value="true" />
@@ -106,7 +109,14 @@
       <option name="project" value="LOCAL" />
       <updated>1710419953478</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Ajout de la SiteMap">
+      <created>1711030929193</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1711030929193</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -125,6 +135,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Changement nom fichier" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changement nom fichier" />
+    <MESSAGE value="Ajout de la SiteMap" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajout de la SiteMap" />
   </component>
 </project>
