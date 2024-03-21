@@ -69,3 +69,7 @@ Quand on envoie une requête de changement d'état <http://localhost/projet/AP-2
 Entre dans le fichier Restoswing.java dans la variable jsonurl le lien suivant:
 http://127.0.0.1/projets/AP-2eme-annee/api/commandes_en_attente.php
 Pour afficher la fenêtre liste Commande de l'application Restoswing.
+
+# Schéma des échange avec l'API :
+
+Afin de renvoyer les informations de l'API nous utilisons un fichier JSON qui renvoie tout le contenu de la table commande et ligne commande de la base de données.
