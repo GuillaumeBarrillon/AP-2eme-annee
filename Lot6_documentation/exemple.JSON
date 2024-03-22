@@ -1,0 +1,110 @@
+{
+    "success": true,
+    "nbCommandes": 5,
+    "commandes": [
+        {
+            "id_commande": 1,
+            "id_user": 3,
+            "id_etat": 0,
+            "date": "2023-11-16 14:17:31",
+            "total_commande": "25.30",
+            "type_conso": 2,
+            "lignes": [
+                {
+                    "id_ligne": 1,
+                    "id_produit": 1,
+                    "qte": 1,
+                    "total_ligne_ht": "2.00"
+                },
+                {
+                    "id_ligne": 2,
+                    "id_produit": 2,
+                    "qte": 2,
+                    "total_ligne_ht": "10.00"
+                },
+                {
+                    "id_ligne": 3,
+                    "id_produit": 3,
+                    "qte": 1,
+                    "total_ligne_ht": "3.00"
+                },
+                {
+                    "id_ligne": 4,
+                    "id_produit": 4,
+                    "qte": 2,
+                    "total_ligne_ht": "8.00"
+                }
+            ]
+        },
+        {
+            "id_commande": 2,
+            "id_user": 4,
+            "id_etat": 0,
+            "date": "2023-11-30 20:01:56",
+            "total_commande": "19.80",
+            "type_conso": 2,
+            "lignes": [
+                {
+                    "id_ligne": 5,
+                    "id_produit": 1,
+                    "qte": 3,
+                    "total_ligne_ht": "6.00"
+                },
+                {
+                    "id_ligne": 6,
+                    "id_produit": 3,
+                    "qte": 4,
+                    "total_ligne_ht": "12.00"
+                }
+            ]
+        },
+        {
+            "id_commande": 3,
+            "id_user": 4,
+            "id_etat": 0,
+            "date": "2023-11-30 20:02:08",
+            "total_commande": "4.40",
+            "type_conso": 2,
+            "lignes": [
+                {
+                    "id_ligne": 7,
+                    "id_produit": 1,
+                    "qte": 2,
+                    "total_ligne_ht": "4.00"
+                }
+            ]
+        },
+        {
+            "id_commande": 4,
+            "id_user": 3,
+            "id_etat": 0,
+            "date": "2024-02-29 14:32:40",
+            "total_commande": "2.20",
+            "type_conso": 2,
+            "lignes": [
+                {
+                    "id_ligne": 8,
+                    "id_produit": 1,
+                    "qte": 1,
+                    "total_ligne_ht": "2.00"
+                }
+            ]
+        },
+        {
+            "id_commande": 5,
+            "id_user": 3,
+            "id_etat": 0,
+            "date": "2024-02-29 14:34:02",
+            "total_commande": "8.80",
+            "type_conso": 2,
+            "lignes": [
+                {
+                    "id_ligne": 9,
+                    "id_produit": 7,
+                    "qte": 1,
+                    "total_ligne_ht": "8.00"
+                }
+            ]
+        }
+    ]
+}
