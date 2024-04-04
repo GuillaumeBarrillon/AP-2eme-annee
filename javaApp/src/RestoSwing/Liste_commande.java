@@ -3,6 +3,7 @@ package RestoSwing;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 public class Liste_commande extends JFrame {
@@ -23,9 +24,14 @@ public class Liste_commande extends JFrame {
         jLabel1.setBounds(280, 0, 200, 50); // Set position and size
         add(jLabel1);
 
+        JLabel jLabel2 = new JLabel("Liste des commandes", SwingConstants.CENTER);
+        jLabel2.setFont(new Font("Segoe UI", Font.PLAIN, 24));
+        jLabel2.setBounds(180, 50, 400, 20); // Set position and size
+        add(jLabel2);
+
         jTable3 = new JTable();
         JScrollPane jScrollPane3 = new JScrollPane(jTable3);
-        jScrollPane3.setBounds(10, 60, 600, 450); // Set position and size
+        jScrollPane3.setBounds(10, 80, 600, 440); // Set position and size
         add(jScrollPane3);
 
         JButton BoutonDetails = new JButton("Détail");
@@ -39,8 +45,23 @@ public class Liste_commande extends JFrame {
 
         JButton quitButton = new JButton("Quitter");
         quitButton.addActionListener(e -> System.exit(0));
-        quitButton.setBounds(510, 520, 100, 30);
+        quitButton.setBounds(510, 525, 100, 30);
         add(quitButton);
+
+        // Palette de couleur !
+//        JButton couleurButton = new JButton("Changer couleur");
+//        couleurButton.addActionListener(e -> {
+//            JColorChooser chooser = new JColorChooser();
+//            Color couleur = chooser.showDialog(null, "Choisissez une couleur", null);
+//            if (couleur != null) {
+//                getContentPane().setBackground(couleur);
+//                quitButton.setForeground(couleur);
+//                couleurButton.setForeground(couleur);
+//                BoutonDetails.setForeground(couleur);
+//            }
+//        });
+//        couleurButton.setBounds(620, 520, 150, 30);
+//        add(couleurButton);
 
         populateTable();
         setVisible(true);
