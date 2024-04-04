@@ -11,6 +11,7 @@ public class Commande {
     private String date;
     private double totalCommande;
     private ArrayList<Ligne> LignesCommande;
+    private String login;
 
     public Commande() {
         this.LignesCommande = new ArrayList<>();
@@ -63,6 +64,8 @@ public class Commande {
     public void setTotalCommande(double totalCommande) {
         this.totalCommande = totalCommande;
     }
+    public String getLogin(){ return login; }
+    public void setLogin(String login){ this.login = login; }
 
     public ArrayList<Ligne> getLignesCommande() {
         return LignesCommande;
