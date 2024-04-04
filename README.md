@@ -5,7 +5,7 @@ Le client arrive sur la page d'accueil du site du restaurant il s'inscrit sur le
 
 # Installation :
 
-    - Installer projet resto dans le dossier xampp/htdocs/projet/
+    - Installer projet resto dans le dossier xampp/htdocs/projets/SIO2/AP/AP-2eme-annee
     - Créer la base de données 'ap3' dans xampp
 
 
@@ -50,24 +50,24 @@ Info        : Info donne le numéro de commande et le prix
 AP-2EME-ANNEE/exemple.JSON
 
 # Maquette JSON :
-    Le JSON renvoie la liste de toute les commandes ne selon leurs état, la date, l'utilisateur, le type de tva avec pour chaque commandes id du produit, de la quantiter, le prix de la linge, l'id de la ligne.
+    Le JSON renvoie la liste de toute les commandes selon leurs état, la date, l'utilisateur, le type de tva avec pour chaque commandes id du produit, de la quantiter, le prix de la linge, l'id de la ligne.
 
 
 # Documentation technique des echanges :
 
-Quand on envoie une requête <http://localhost/projet/AP-2eme-annee/api/commandes_en_attente.php> le serveur renvoi sous format JSON la liste des commandes en attente dans la base de données.
+Quand on envoie une requête <http://localhost/projets/SIO2/AP/AP-2eme-annee/api/commandes_en_attente.php> le serveur renvoi sous format JSON la liste des commandes en attente dans la base de données.
 
-Quand on envoie une requête <http://localhost/projet/AP-2eme-annee/api/commande_accepter.php?id_commande=1> d'acceptation de la commande. Le serveur modifie l'état de la commande dans la base de donnée en 'accepter'.
+Quand on envoie une requête <<http://localhost/projets/SIO2/AP/AP-2eme-annee/api/commande_accepter.php?id_commande=1> d'acceptation de la commande. Le serveur modifie l'état de la commande dans la base de donnée en 'accepter'.
 
-Quand on envoie une requête <http://localhost/projet/AP-2eme-annee/api/commande_refuser.php?id_commande=1> qui refuse la commande. Le serveur modifie l'état de la commande dans la base de donnée en 'refuser'.
+Quand on envoie une requête <<http://localhost/projets/SIO2/AP/AP-2eme-annee/api/commande_refuser.php?id_commande=1> qui refuse la commande. Le serveur modifie l'état de la commande dans la base de donnée en 'refuser'.
 
 
-Quand on envoie une requête de changement d'état <http://localhost/projet/AP-2eme-annee/api/commande_refuser.php?id_commande=1>. Le serveur doit changer l'état de la commande dans la base de données en 'prêt'.
+Quand on envoie une requête de changement d'état <<http://localhost/projets/SIO2/AP/AP-2eme-annee/api/commande_refuser.php?id_commande=1>. Le serveur doit changer l'état de la commande dans la base de données en 'prêt'.
 
 # L'url Json :
 
 Entre dans le fichier Restoswing.java dans la variable jsonurl le lien suivant:
-http://127.0.0.1/projets/AP-2eme-annee/api/commandes_en_attente.php
+http://127.0.0.1/projets/SIO2/AP/AP-2eme-annee/api/commandes_en_attente.php
 Pour afficher la fenêtre liste Commande de l'application Restoswing.
 
 # Schéma des échange avec l'API :
