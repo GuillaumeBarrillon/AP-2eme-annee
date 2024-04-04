@@ -18,8 +18,8 @@ public class Restoswing {
 
         ArrayList<Commande> commandesList = new ArrayList<>();
 
-        // Ici, nous définissons l'URL de notre JSON. Nous avons changé le nom pour "test1".
-        String jsonUrl = "http://localhost/projets/SIO2/AP/AP-2eme-annee/api/commandes_en_attente.php";
+        // Ici, nous définissons l'URL de notre JSON.
+        String jsonUrl = "http://127.0.0.1/projets/SIO2/AP/AP-2eme-annee/api/commandes_en_attente.php";
 
         // Nous utilisons l'URL pour faire une requête et obtenir une réponse.
         String jsonResponse = NetworkUtils.request(jsonUrl);

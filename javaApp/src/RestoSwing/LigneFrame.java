@@ -70,6 +70,7 @@ public class LigneFrame extends JDialog {
             NetworkUtils.request("http://127.0.0.1/projets/SIO2/AP/AP-2eme-annee/api/commande_accepter.php?id_commande=" + idCommande);
         });
         acceptButton.setBounds(620, 200, 150, 30);
+        acceptButton.setBackground(Color.green);
         panel.add(acceptButton);
 
         JButton refusButton = new JButton("Refuser");
@@ -77,6 +78,7 @@ public class LigneFrame extends JDialog {
             NetworkUtils.request("http://127.0.0.1/projets/SIO2/AP/AP-2eme-annee/api/commande_refuser.php?id_commande=" + idCommande);
         });
         refusButton.setBounds(620, 250, 150, 30);
+        refusButton.setBackground(Color.red);
         panel.add(refusButton);
 
         JButton preteButton = new JButton("Prête");
@@ -84,6 +86,7 @@ public class LigneFrame extends JDialog {
             NetworkUtils.request("http://127.0.0.1/projets/SIO2/AP/AP-2eme-annee/api/commande_terminer.php?id_commande=" + idCommande);
         });
         preteButton.setBounds(620, 300, 150, 30);
+        preteButton.setBackground(Color.orange);
         panel.add(preteButton);
 
         JButton revenirButton = new JButton("Revenir");
