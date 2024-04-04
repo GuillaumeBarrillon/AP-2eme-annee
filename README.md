@@ -73,3 +73,9 @@ Pour afficher la fenêtre liste Commande de l'application Restoswing.
 # Schéma des échange avec l'API :
 
 Afin de renvoyer les informations de l'API nous utilisons un fichier JSON qui renvoie tout le contenu de la table commande et ligne commande de la base de données.
+
+# Resto Swing :
+
+# Démarrage Resto Swing :
+
+Pour démarrer restoswing il faut se diriger dans le dossier javaApp et exécuter l'exécutable javaApp.jar
